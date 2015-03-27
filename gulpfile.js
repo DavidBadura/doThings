@@ -6,9 +6,9 @@ var gulp = require('gulp'),
 gulp.task('default', ['css', 'js', 'fonts']);
 
 gulp.task('css', function () {
-    gulp.src(['node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss', 'assets/scss/style.scss'])
+    gulp.src(['assets/scss/style.scss'])
         .pipe(concat('style.scss'))
-        .pipe(sass({errLogToConsole: true}))
+        .pipe(sass({includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/'], errLogToConsole: true}))
         .pipe(minifyCSS())
         .pipe(gulp.dest('web/css/'));
 });
