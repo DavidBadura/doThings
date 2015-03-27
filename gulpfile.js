@@ -8,7 +8,7 @@ gulp.task('default', ['css', 'js', 'fonts']);
 gulp.task('css', function () {
     gulp.src(['node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss', 'assets/scss/style.scss'])
         .pipe(concat('style.scss'))
-        .pipe(sass())
+        .pipe(sass({errLogToConsole: true}))
         .pipe(minifyCSS())
         .pipe(gulp.dest('web/css/'));
 });
@@ -33,6 +33,6 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('assets/scss/*.scss', ['styles']);
+    gulp.watch('assets/scss/*.scss', ['css']);
     gulp.watch('assets/js/*.js', ['js']);
 });
