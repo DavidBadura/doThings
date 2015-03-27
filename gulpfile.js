@@ -14,15 +14,16 @@ gulp.task('css', function () {
 });
 
 gulp.task('js', function () {
-    gulp.src('res/js/script.js')
-        .pipe(gulp.dest('web/js/'));
-
-    // Components
     gulp.src([
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js'
+        'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        'assets/js/script.js'
     ])
         .pipe(concat('script.js'))
+        .pipe(gulp.dest('web/js/'));
+
+    // copy jquery.min.map
+    gulp.src('node_modules/jquery/dist/jquery.min.map')
         .pipe(gulp.dest('web/js/'));
 });
 
