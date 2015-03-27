@@ -10,10 +10,31 @@
     </parameters>
     -->
 
-    <!--
     <services>
+        <service id="task_manager" class="DavidBadura\Taskwarrior\TaskManager">
+            <argument type="service" id="taskwarrior"/>
+        </service>
+
+        <service id="taskwarrior" class="DavidBadura\Taskwarrior\Taskwarrior">
+        </service>
+        
+        <!-- Form -->
+        <service id="form.type.task" class="AppBundle\Form\Type\TaskType">
+            <tag name="form.type" alias="task"/>
+        </service>
+
+        <service id="form.type.autocomplete" class="AppBundle\Form\Type\AutocompleteType">
+            <tag name="form.type" alias="autocomplete"/>
+        </service>
+
+        <service id="form.type.tag" class="AppBundle\Form\Type\TagType">
+            <tag name="form.type" alias="tag"/>
+        </service>
+
+        <service id="form.type.recurring" class="AppBundle\Form\Type\RecurringType">
+            <tag name="form.type" alias="recurring"/>
+        </service>
 
     </services>
-    -->
 
 </container>
