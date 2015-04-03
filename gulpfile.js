@@ -5,20 +5,30 @@ var gulp = require('gulp'),
 
 gulp.task('default', ['css', 'js', 'fonts']);
 
-gulp.task('css', function () {
-    gulp.src(['assets/scss/style.scss'])
-        .pipe(concat('style.css'))
+gulp.task('sass', function () {
+    gulp.src('assets/scss/style.scss')
         .pipe(sass({includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/'], errLogToConsole: true}))
-        .pipe(gulp.dest('web/css/'));
+        .pipe(gulp.dest('web/css/'))
+        ;
+});
 
-    gulp.src([
+gulp.task('css', ['sass'], function () {
+
+    var files = [
         'node_modules/select2/select2-bootstrap.css',
-        'node_modules/bootstrap-datetimepicker-build/build/css/bootstrap-datetimepicker.css',
-        'web/css/style.css'
-    ])
-        .pipe(concat('style.css'))
+        'web/css/style.css',
+        'node_modules/pickadate/lib/themes/default.css',
+        'node_modules/pickadate/lib/themes/default.date.css',
+        'node_modules/pickadate/lib/themes/default.time.css'
+    ];
+
+    gulp.src(files)
+        .pipe(concat('all.css'))
+        .pipe(gulp.dest('web/css/'))
         .pipe(minifyCSS())
-        .pipe(gulp.dest('web/css/'));
+        .pipe(concat('all.min.css'))
+        .pipe(gulp.dest('web/css/'))
+    ;
 });
 
 gulp.task('js', function () {
@@ -26,8 +36,9 @@ gulp.task('js', function () {
         'node_modules/jquery/dist/jquery.js',
         'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         'node_modules/select2/select2.json',
-        'node_modules/bootstrap-datetimepicker-build/node_modules/moment/moment.js',
-        'node_modules/bootstrap-datetimepicker-build/build/js/bootstrap-datetimepicker.min.js',
+        'node_modules/pickadate/lib/picker.js',
+        'node_modules/pickadate/lib/picker.date.js',
+        'node_modules/pickadate/lib/picker.time.js',
         'assets/js/script.js'
     ])
         .pipe(concat('script.js'))

@@ -1,5 +1,13 @@
 (function ($) {
     $(document).ready(function () {
-        $('.datetimepicker').datetimepicker();
+
+        $('.datepicker').pickadate({
+            editable: true
+        });
+
+        $('.timepicker').pickatime({
+            editable: true
+        });
+
     });
 })(jQuery);

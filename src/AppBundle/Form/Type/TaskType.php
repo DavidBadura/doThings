@@ -29,18 +29,18 @@ class TaskType extends AbstractType
             ])
             ->add('project', 'autocomplete')
             ->add('due', 'datetime', [
-                'widget' => 'single_text',
-                'attr'   => ['class' => 'datetimepicker']
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text'
             ])
             ->add('wait', 'datetime', [
-                'widget' => 'single_text',
-                'attr'   => ['class' => 'datetimepicker']
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text'
             ])
             ->add('tags', 'tag')
             ->add('recurring', 'recurring')
             ->add('until', 'datetime', [
-                'widget' => 'single_text',
-                'attr'   => ['class' => 'datetimepicker']
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text'
             ]);
     }
 
