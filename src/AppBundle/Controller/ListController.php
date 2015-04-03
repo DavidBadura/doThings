@@ -31,7 +31,7 @@ class ListController extends AbstractController
     }
 
     /**
-     * @Route("/tag/{tag}", name="task_tag")
+     * @Route("/tag/{tag}", name="list_tag")
      */
     public function tagAction($tag)
     {
@@ -39,7 +39,7 @@ class ListController extends AbstractController
     }
 
     /**
-     * @Route("/project/{project}", name="task_project")
+     * @Route("/project/{project}", name="list_project")
      */
     public function projectAction($project)
     {

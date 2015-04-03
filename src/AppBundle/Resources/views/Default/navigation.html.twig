@@ -1,17 +1,36 @@
-<a href="{{ path('homepage') }}">all</a>
+<div class="panel panel-default">
 
-<h2>Projects</h2>
+    <div class="panel-heading">Lists</div>
 
-<ul>
-    {% for project in projects %}
-        <li><a href="{{ path('task_project', {project: project}) }}">{{ project }}</a></li>
-    {% endfor %}
-</ul>
+    <div class="list-group">
+        {% for label,data in lists %}
+            <a href="{{ data.url }}" class="list-group-item">
+                <span class="badge">{{ data.count }}</span>
+                {{ label }}
+            </a>
+        {% endfor %}
+    </div>
 
-<h2>Tags</h2>
+    <div class="panel-heading">Projects</div>
 
-<ul>
-    {% for tag in tags %}
-        <li><a href="{{ path('task_tag', {tag: tag}) }}">{{ tag }}</a></li>
-    {% endfor %}
-</ul>
+    <div class="list-group">
+        {% for label,data in projects %}
+            <a href="{{ data.url }}" class="list-group-item">
+                <span class="badge">{{ data.count }}</span>
+                {{ label }}
+            </a>
+        {% endfor %}
+    </div>
+
+    <div class="panel-heading">Tags</div>
+
+    <div class="list-group">
+        {% for label,data in tags %}
+            <a href="{{ data.url }}" class="list-group-item">
+                <span class="badge">{{ data.count }}</span>
+                {{ label }}
+            </a>
+        {% endfor %}
+    </div>
+
+</div>

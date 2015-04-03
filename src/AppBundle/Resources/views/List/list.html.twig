@@ -4,11 +4,19 @@
 
     {{ form(form) }}
 
-    <a href="{{ path('task_add') }}">new</a>
+    <a href="{{ path('task_add') }}" class="btn btn-primary">new</a>
 
-    <ul>
+    <div class="list-group">
         {% for task in tasks %}
-            <li><a href="{{ path('task_info', {id: task.uuid}) }}">{{ task.description }}</a></li>
+        <a href="{{ path('task_info', {id: task.uuid}) }}" class="list-group-item">
+            <h4 class="list-group-item-heading">{{ task.description }}</h4>
+            <p class="list-group-item-text">
+                {% for tag in task.tags %}
+                    <span class="label label-default">{{ tag }}</span>
+                {% endfor %}
+            </p>
+        </a>
         {% endfor %}
-    </ul>
+    </div>
+
 {% endblock %}

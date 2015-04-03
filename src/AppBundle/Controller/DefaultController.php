@@ -23,14 +23,12 @@ class DefaultController extends AbstractController
      */
     public function navigationAction()
     {
-        $taskwarrior = $this->getTaskManager()->getTaskwarrior();
-
-        $projects = $taskwarrior->projects('status:pending');
-        $tags     = $taskwarrior->tags('status:pending');
+        $info = $this->get('task_information');
 
         return [
-            'projects' => $projects,
-            'tags'     => $tags
+            'lists'    => $info->getLists(),
+            'projects' => $info->getProjects(),
+            'tags'     => $info->getTags()
         ];
     }
 }

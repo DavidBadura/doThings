@@ -1,5 +1,5 @@
-Standard Edtion
-===============
+doThings!
+=========
 
 
 Installation

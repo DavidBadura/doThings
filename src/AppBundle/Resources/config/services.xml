@@ -17,7 +17,12 @@
 
         <service id="taskwarrior" class="DavidBadura\Taskwarrior\Taskwarrior">
         </service>
-        
+
+        <service id="task_information" class="AppBundle\TaskInformation">
+            <argument type="service" id="task_manager"/>
+            <argument type="service" id="router"/>
+        </service>
+
         <!-- Form -->
         <service id="form.type.task" class="AppBundle\Form\Type\TaskType">
             <argument type="service" id="taskwarrior"/>
