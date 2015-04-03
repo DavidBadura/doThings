@@ -1,2 +1,15 @@
 @import "variables";
 @import "bootstrap";
+
+body {
+    background: $body-bg;
+}
+
+.brand {
+    background: $brand-primary;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
