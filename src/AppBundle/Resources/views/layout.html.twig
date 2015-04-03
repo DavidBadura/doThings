@@ -19,9 +19,16 @@
 </head>
 <body>
 
-<h1>Hello, world!</h1>
+{% block body %}
 
-{% block body %}{% endblock %}
+    <h1>doThings!</h1>
+
+    <div class="row">
+        <div class="col-md-4">{{ render(controller('AppBundle:Default:navigation')) }}</div>
+        <div class="col-md-8">{% block content %}{% endblock %}</div>
+    </div>
+
+{% endblock %}
 
 <script src="{{ asset('js/script.js') }}"></script>
 </body>

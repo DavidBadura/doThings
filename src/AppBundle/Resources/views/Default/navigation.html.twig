@@ -1,0 +1,17 @@
+<a href="{{ path('homepage') }}">all</a>
+
+<h2>Projects</h2>
+
+<ul>
+    {% for project in projects %}
+        <li><a href="{{ path('task_project', {project: project}) }}">{{ project }}</a></li>
+    {% endfor %}
+</ul>
+
+<h2>Tags</h2>
+
+<ul>
+    {% for tag in tags %}
+        <li><a href="{{ path('task_tag', {tag: tag}) }}">{{ tag }}</a></li>
+    {% endfor %}
+</ul>

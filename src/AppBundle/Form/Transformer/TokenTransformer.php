@@ -15,7 +15,11 @@ class TokenTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
-        dump($value);
+        if (!is_array($value)) {
+            return [];
+        }
+
+        return implode(' ', $value);
     }
 
     /**
@@ -24,6 +28,6 @@ class TokenTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-
+        return array_map('trim', explode(' ', $value));
     }
 }

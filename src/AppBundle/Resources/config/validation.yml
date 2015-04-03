@@ -1,0 +1,4 @@
+DavidBadura\Taskwarrior\Task:
+    constraints:
+        -
+            AppBundle\Validator\Task: ~

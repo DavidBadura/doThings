@@ -20,7 +20,13 @@
         
         <!-- Form -->
         <service id="form.type.task" class="AppBundle\Form\Type\TaskType">
+            <argument type="service" id="taskwarrior"/>
             <tag name="form.type" alias="task"/>
+        </service>
+
+        <service id="form.type.search" class="AppBundle\Form\Type\SearchType">
+            <argument type="service" id="taskwarrior"/>
+            <tag name="form.type" alias="task_search"/>
         </service>
 
         <service id="form.type.autocomplete" class="AppBundle\Form\Type\AutocompleteType">
@@ -33,6 +39,12 @@
 
         <service id="form.type.recurring" class="AppBundle\Form\Type\RecurringType">
             <tag name="form.type" alias="recurring"/>
+        </service>
+
+        <!-- Validator -->
+        <service id="validator.task" class="AppBundle\Validator\TaskValidator">
+            <argument type="service" id="task_manager"/>
+            <tag name="validator.constraint_validator" alias="task"/>
         </service>
 
     </services>

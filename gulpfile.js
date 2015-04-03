@@ -16,6 +16,7 @@ gulp.task('css', ['sass'], function () {
 
     var files = [
         'node_modules/select2/select2-bootstrap.css',
+        'node_modules/select2/select2.css',
         'web/css/style.css',
         'node_modules/pickadate/lib/themes/default.css',
         'node_modules/pickadate/lib/themes/default.date.css',
@@ -29,13 +30,18 @@ gulp.task('css', ['sass'], function () {
         .pipe(concat('all.min.css'))
         .pipe(gulp.dest('web/css/'))
     ;
+
+    /* for select2 icons */
+    gulp.src(['node_modules/select2/select2.png', 'node_modules/select2/select2x2.png'])
+        .pipe(gulp.dest('web/css/'))
+    ;
 });
 
 gulp.task('js', function () {
     gulp.src([
         'node_modules/jquery/dist/jquery.js',
         'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-        'node_modules/select2/select2.json',
+        'node_modules/select2/select2.js',
         'node_modules/pickadate/lib/picker.js',
         'node_modules/pickadate/lib/picker.date.js',
         'node_modules/pickadate/lib/picker.time.js',

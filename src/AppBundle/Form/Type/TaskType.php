@@ -3,6 +3,7 @@
 namespace AppBundle\Form\Type;
 
 use DavidBadura\Taskwarrior\Task;
+use DavidBadura\Taskwarrior\Taskwarrior;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -13,6 +14,19 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class TaskType extends AbstractType
 {
     /**
+     * @var Taskwarrior
+     */
+    private $taskwarrior;
+
+    /**
+     * @param Taskwarrior $taskwarrior
+     */
+    public function __construct(Taskwarrior $taskwarrior)
+    {
+        $this->taskwarrior = $taskwarrior;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -21,24 +35,36 @@ class TaskType extends AbstractType
         $builder
             ->add('description', 'text')
             ->add('priority', 'choice', [
-                'choices' => [
+                'required' => false,
+                'choices'  => [
                     Task::PRIORITY_HIGH   => Task::PRIORITY_HIGH,
                     Task::PRIORITY_MEDIUM => Task::PRIORITY_MEDIUM,
                     Task::PRIORITY_LOW    => Task::PRIORITY_LOW
                 ]
             ])
-            ->add('project', 'autocomplete')
+            ->add('project', 'autocomplete', [
+                'required' => false,
+                'choices'  => $this->taskwarrior->projects()
+            ])
             ->add('due', 'datetime', [
+                'required'    => false,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
             ])
             ->add('wait', 'datetime', [
+                'required'    => false,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
             ])
-            ->add('tags', 'tag')
-            ->add('recurring', 'recurring')
+            ->add('tags', 'tag', [
+                'required' => false,
+                'choices'  => $this->taskwarrior->tags()
+            ])
+            ->add('recurring', 'recurring', [
+                'required' => false
+            ])
             ->add('until', 'datetime', [
+                'required'    => false,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
             ]);

@@ -5,18 +5,32 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * @author David Badura <d.a.badura@gmail.com>
+ */
 class DefaultController extends AbstractController
 {
     /**
      * @Route("/", name="homepage")
-     * @Template()
      */
     public function indexAction()
     {
-        $tasks = $this->getTaskManager()->filter();
+        return $this->redirectToRoute('list');
+    }
+
+    /**
+     * @Template()
+     */
+    public function navigationAction()
+    {
+        $taskwarrior = $this->getTaskManager()->getTaskwarrior();
+
+        $projects = $taskwarrior->projects('status:pending');
+        $tags     = $taskwarrior->tags('status:pending');
 
         return [
-            'tasks' => $tasks
+            'projects' => $projects,
+            'tags'     => $tags
         ];
     }
 }

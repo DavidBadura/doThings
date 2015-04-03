@@ -1,0 +1,14 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+
+    {{ form(form) }}
+
+    <a href="{{ path('task_add') }}">new</a>
+
+    <ul>
+        {% for task in tasks %}
+            <li><a href="{{ path('task_info', {id: task.uuid}) }}">{{ task.description }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
