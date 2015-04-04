@@ -1,11 +1,13 @@
-{% extends 'AppBundle::layout.html.twig' %}
+{% extends 'AppBundle::modal_form.html.twig' %}
+
+{% block header %}
+    <h1>Edit task</h1>
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class='col-sm-6'>
-                {{ form(form) }}
-            </div>
-        </div>
-    </div>
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block footer %}
+    {{ form_widget(form.submit) }}
 {% endblock %}

@@ -45,6 +45,7 @@ gulp.task('js', function () {
         'node_modules/pickadate/lib/picker.js',
         'node_modules/pickadate/lib/picker.date.js',
         'node_modules/pickadate/lib/picker.time.js',
+        'assets/js/jquery.modal.js',
         'assets/js/script.js'
     ])
         .pipe(concat('script.js'))

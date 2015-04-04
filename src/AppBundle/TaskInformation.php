@@ -39,6 +39,10 @@ class TaskInformation
                 'url'   => $this->router->generate('list'),
                 'count' => count($this->taskManager->filter())
             ],
+            'waiting'      => [
+                'url'   => $this->router->generate('list_waiting'),
+                'count' => count($this->taskManager->filter('status:waiting'))
+            ],
             'all'      => [
                 'url'   => $this->router->generate('list_all'),
                 'count' => null

@@ -1,17 +1,19 @@
-(function ($) {
-    $(document).ready(function () {
+var doThings = {};
 
-        $('.datepicker').pickadate({
+(function ($) {
+
+    doThings.register = function($el) {
+        $el.find('.datepicker').pickadate({
             editable: true,
             format: 'yyyy-mm-dd'
         });
 
-        $('.timepicker').pickatime({
+        $el.find('.timepicker').pickatime({
             editable: true,
             format: 'H:i'
         });
 
-        $(".autocomplete:not(.tags)").each(function() {
+        $el.find(".autocomplete:not(.tags)").each(function() {
             var $this = $(this);
 
             $this.select2({
@@ -21,16 +23,26 @@
             })
         });
 
-        $(".tags").each(function() {
+        $el.find(".tags").each(function() {
             console.log(this);
 
             var $this = $(this);
 
             $this.select2({
                 tags: $this.data('choices'),
-                tokenSeparators: [',', ' ']
+                tokenSeparators: [' ']
             })
         });
 
+        $el.find('.modal-ajax').modalAjaxForm({
+            onComplete: function($element){
+                doThings.register($element);
+            }
+        });
+    };
+
+    $(document).ready(function () {
+        doThings.register($('body'));
     });
+
 })(jQuery);

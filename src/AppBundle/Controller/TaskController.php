@@ -6,6 +6,7 @@ use DavidBadura\Taskwarrior\Task;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @author David Badura <d.a.badura@gmail.com>
@@ -16,6 +17,7 @@ class TaskController extends AbstractController
 {
     /**
      * @Route("/{id}/info", name="task_info")
+     * @Template()
      *
      * @param string $id
      * @return array
@@ -28,9 +30,6 @@ class TaskController extends AbstractController
         if (!$task) {
             throw $this->createNotFoundException();
         }
-
-        dump($task);
-        die;
 
         return [
             'task' => $task
@@ -48,7 +47,10 @@ class TaskController extends AbstractController
     {
         $task = new Task();
 
-        $form = $this->createForm('task', $task);
+        $form = $this->createForm('task', $task, [
+            'action' => $this->generateUrl('task_add')
+        ]);
+
         $form->add('submit', 'submit');
 
         $form->handleRequest($request);
@@ -56,7 +58,7 @@ class TaskController extends AbstractController
         if ($form->isValid()) {
             $this->getTaskManager()->save($task);
 
-            return $this->redirectToRoute('homepage');
+            return new Response('', 201);
         }
 
         return [
@@ -81,14 +83,18 @@ class TaskController extends AbstractController
             throw $this->createNotFoundException();
         }
 
-        $form = $this->createForm('task', $task);
+        $form = $this->createForm('task', $task, [
+            'action' => $this->generateUrl('task_edit', ['id' => $task->getUuid()])
+        ]);
+
         $form->add('submit', 'submit');
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $this->getTaskManager()->save($task);
-            return $this->redirectToRoute('homepage');
+
+            return new Response('', 201);
         }
 
         return [
@@ -115,7 +121,7 @@ class TaskController extends AbstractController
 
         $this->getTaskManager()->done($task);
 
-        return $this->redirectToRoute('homepage');
+        return new Response('', 201);
     }
 
     /**
@@ -136,6 +142,6 @@ class TaskController extends AbstractController
 
         $this->getTaskManager()->delete($task);
 
-        return $this->redirectToRoute('homepage');
+        return new Response('', 201);
     }
 }

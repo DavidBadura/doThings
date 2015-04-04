@@ -42,9 +42,8 @@ class TaskType extends AbstractType
                     Task::PRIORITY_LOW    => Task::PRIORITY_LOW
                 ]
             ])
-            ->add('project', 'autocomplete', [
-                'required' => false,
-                'choices'  => $this->taskwarrior->projects()
+            ->add('project', 'text', [
+                'required' => false
             ])
             ->add('due', 'datetime', [
                 'required'    => false,

@@ -23,6 +23,14 @@ class ListController extends AbstractController
     }
 
     /**
+     * @Route("/waiting", name="list_waiting")
+     */
+    public function waitingAction()
+    {
+        return $this->filterTasks('status:waiting');
+    }
+
+    /**
      * @Route("/all", name="list_all")
      */
     public function allAction()
@@ -51,7 +59,7 @@ class ListController extends AbstractController
      */
     public function searchAction(Request $request)
     {
-        return $this->filterTasks($request->get('q', ''));
+        return $this->filterTasks(str_replace(',', ' ', $request->get('q', '')));
     }
 
     /**
@@ -60,13 +68,14 @@ class ListController extends AbstractController
      */
     protected function filterTasks($filter = '')
     {
-        $form = $this->get('form.factory')->createNamed(null, 'task_search', ['q' => $filter], [
+        $form = $this->get('form.factory')->createNamed(null, 'task_search', null, [
             'action'          => $this->generateUrl('list_search'),
             'method'          => 'get',
             'csrf_protection' => false
         ]);
 
-        $form->add('submit', 'submit');
+        $form->get('q')->setData(explode(' ', $filter));
+        $form->add('submit', 'submit', ['label' => 'Search']);
 
         $tasks = $this->getTaskManager()->filterAll($filter);
 
