@@ -34,6 +34,9 @@ class TaskType extends AbstractType
     {
         $builder
             ->add('description', 'text')
+            ->add('project', 'text', [
+                'required' => false
+            ])
             ->add('priority', 'choice', [
                 'required' => false,
                 'choices'  => [
@@ -42,8 +45,9 @@ class TaskType extends AbstractType
                     Task::PRIORITY_LOW    => Task::PRIORITY_LOW
                 ]
             ])
-            ->add('project', 'text', [
-                'required' => false
+            ->add('tags', 'tag', [
+                'required' => false,
+                'choices'  => $this->taskwarrior->tags()
             ])
             ->add('due', 'datetime', [
                 'required'    => false,
@@ -54,10 +58,6 @@ class TaskType extends AbstractType
                 'required'    => false,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
-            ])
-            ->add('tags', 'tag', [
-                'required' => false,
-                'choices'  => $this->taskwarrior->tags()
             ])
             ->add('recurring', 'recurring', [
                 'required' => false
