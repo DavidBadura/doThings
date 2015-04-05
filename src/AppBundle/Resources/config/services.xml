@@ -16,6 +16,8 @@
         </service>
 
         <service id="taskwarrior" class="DavidBadura\Taskwarrior\Taskwarrior">
+            <argument>%taskwarrior_taskrc%</argument>
+            <argument>%taskwarrior_data%</argument>
         </service>
 
         <service id="task_information" class="AppBundle\TaskInformation">
