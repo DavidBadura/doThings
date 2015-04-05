@@ -43,6 +43,26 @@ var doThings = {};
 
     $(document).ready(function () {
         doThings.register($('body'));
+
+
+        var $container = $('#st-container');
+
+        $('.btn-nav').click(function(event) {
+            event.stopPropagation();
+
+            $container.addClass('st-menu-open');
+        });
+
+        $('.st-pusher').click(function() {
+            console.log('remove');
+            $container.removeClass('st-menu-open');
+        });
+
+        $(document).resize(function() {
+            console.log('resize');
+            $container.removeClass('st-menu-open');
+        });
+
     });
 
 })(jQuery);

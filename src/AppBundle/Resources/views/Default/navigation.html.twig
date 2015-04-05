@@ -1,36 +1,24 @@
-<div class="panel panel-default">
+{% import _self as _ %}
 
-    <div class="panel-heading">Lists</div>
+<ul class="menu list-unstyled">
+    {{ _.section('Lists', lists) }}
+    {{ _.section('Projects', projects) }}
+    {{ _.section('Tags', tags) }}
+</ul>
 
-    <div class="list-group">
-        {% for label,data in lists %}
-            <a href="{{ data.url }}" class="list-group-item">
-                <span class="badge">{{ data.count }}</span>
-                {{ label }}
-            </a>
+{% macro section(header, list) %}
+    {% if list|length %}
+        <li class="header">{{ header }}</li>
+
+        {% for label,data in list %}
+            <li>
+                <a href="{{ data.url }}">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="badge bg-primary">{{ data.count }}</span>
+                    {{ label }}
+                </a>
+            </li>
         {% endfor %}
-    </div>
 
-    <div class="panel-heading">Projects</div>
-
-    <div class="list-group">
-        {% for label,data in projects %}
-            <a href="{{ data.url }}" class="list-group-item">
-                <span class="badge">{{ data.count }}</span>
-                {{ label }}
-            </a>
-        {% endfor %}
-    </div>
-
-    <div class="panel-heading">Tags</div>
-
-    <div class="list-group">
-        {% for label,data in tags %}
-            <a href="{{ data.url }}" class="list-group-item">
-                <span class="badge">{{ data.count }}</span>
-                {{ label }}
-            </a>
-        {% endfor %}
-    </div>
-
-</div>
+    {% endif %}
+{% endmacro %}

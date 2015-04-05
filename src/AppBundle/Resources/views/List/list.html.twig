@@ -2,7 +2,9 @@
 
 {% block content %}
 
-    {% include 'AppBundle:List:_search.html.twig' %}
+    <div class="hidden-xs hidden-sm">
+        {% include 'AppBundle:List:_search.html.twig' %}
+    </div>
 
     <div class="list-group">
         {% for task in tasks %}
@@ -10,6 +12,14 @@
                 <h4 class="list-group-item-heading">{{ task.description }}</h4>
 
                 <p class="list-group-item-text">
+                    {% if task.project %}
+                        <span class="label label-success">Project: {{ task.project }}</span>
+                    {% endif %}
+
+                    {% if task.due %}
+                        <span class="label label-warning">Due: {{ task.due }}</span>
+                    {% endif %}
+
                     {% for tag in task.tags %}
                         <span class="label label-default">{{ tag }}</span>
                     {% endfor %}

@@ -9,7 +9,7 @@ gulp.task('sass', function () {
     gulp.src('assets/scss/style.scss')
         .pipe(sass({includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/'], errLogToConsole: true}))
         .pipe(gulp.dest('web/css/'))
-        ;
+    ;
 });
 
 gulp.task('css', ['sass'], function () {
@@ -17,6 +17,7 @@ gulp.task('css', ['sass'], function () {
     var files = [
         'node_modules/select2/select2-bootstrap.css',
         'node_modules/select2/select2.css',
+        'assets/css/component.css',
         'web/css/style.css',
         'node_modules/pickadate/lib/themes/default.css',
         'node_modules/pickadate/lib/themes/default.date.css',

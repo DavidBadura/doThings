@@ -46,6 +46,8 @@ class TaskController extends AbstractController
     public function addAction(Request $request)
     {
         $task = new Task();
+        $task->setProject($request->get('project', null));
+        $task->setTags($request->get('tags', []));
 
         $form = $this->createForm('task', $task, [
             'action' => $this->generateUrl('task_add')

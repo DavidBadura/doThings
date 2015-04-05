@@ -13,3 +13,61 @@ body {
     font-size: 50px;
     margin-bottom: 20px;
 }
+
+.menu {
+    li {
+        border-bottom: 1px solid $brand-primary;
+
+        .badge {
+            float: right;
+            background: $brand-primary;
+        }
+
+        a {
+            padding: 10px;
+            display: block;
+
+            &:hover {
+                text-decoration: none;
+                background: $brand-primary;
+                color: #fff;
+            }
+        }
+
+        &.header {
+            padding: 30px 10px 10px 10px;
+            font-weight: bold;
+        }
+    }
+}
+
+/* Navigation */
+.st-menu {
+    background: $body-bg;
+    padding: 5px;
+
+    .menu {
+        li {
+            border-bottom: 1px solid #fff;
+
+            .badge {
+                float: right;
+                background: #fff;
+                color: $body-bg;
+            }
+
+            a {
+                color: #fff;
+
+                &:hover {
+                    background: #fff;
+                    color: $body-bg;
+                }
+            }
+
+            &.header {
+                color: #fff;
+            }
+        }
+    }
+}
