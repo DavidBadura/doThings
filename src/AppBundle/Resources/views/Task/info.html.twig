@@ -58,8 +58,15 @@
         </tr>
     </table>
 
+    {% if task.pending %}
+        <a href="{{ path('task_done', {id: task.uuid}) }}" class="btn btn-success modal-ajax">Done</a>
+        <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-warning modal-ajax">Edit</a>
+        <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-danger modal-ajax">Delete</a>
+    {% elseif task.recurring %}
+        <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-warning modal-ajax">Edit</a>
+        <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-danger modal-ajax">Delete</a>
+    {% else %}
+        <a href="{{ path('task_reopen', {id: task.uuid}) }}" class="btn btn-warning modal-ajax">Reopen</a>
+    {% endif %}
 
-    <a href="{{ path('task_done', {id: task.uuid}) }}" class="btn btn-success modal-ajax">Done</a>
-    <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-warning modal-ajax">Edit</a>
-    <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-danger modal-ajax">Delete</a>
 {% endblock %}

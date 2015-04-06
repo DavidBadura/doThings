@@ -148,4 +148,25 @@ class TaskController extends AbstractController
 
         return new Response('', 201);
     }
+
+    /**
+     * @Route("/{id}/reopen", name="task_reopen")
+     *
+     * @param Request $request
+     * @param string $id
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \DavidBadura\Taskwarrior\TaskwarriorException
+     */
+    public function reopenAction(Request $request, $id)
+    {
+        $task = $this->getTaskManager()->find($id);
+
+        if (!$task) {
+            throw $this->createNotFoundException();
+        }
+
+        $this->getTaskManager()->reopen($task);
+
+        return new Response('', 201);
+    }
 }
