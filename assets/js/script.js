@@ -39,6 +39,8 @@ var doThings = {};
                 doThings.register($element);
             }
         });
+
+        $el.find('[data-toggle="tooltip"]').tooltip()
     };
 
     $(document).ready(function () {
