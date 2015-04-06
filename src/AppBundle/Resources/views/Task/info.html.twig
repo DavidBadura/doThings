@@ -1,12 +1,41 @@
 {% extends 'AppBundle::modal.html.twig' %}
 
 {% block content %}
-    <h1>{{ task.description }}</h1>
+    <h1>
+
+        {% if task.pending %}
+            <a href="{{ path('task_done', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+            <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+        {% elseif task.isRecurring() %}
+            <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+        {% else %}
+            <a href="{{ path('task_reopen', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </a>
+        {% endif %}
+
+    </h1>
 
     <table class="table">
         <tr>
             <td>Uuid</td>
             <td>{{ task.uuid }}</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>{{ task.description }}</td>
         </tr>
         <tr>
             <td>Project</td>
@@ -57,16 +86,4 @@
             <td>{{ task.end|default('-') }}</td>
         </tr>
     </table>
-
-    {% if task.pending %}
-        <a href="{{ path('task_done', {id: task.uuid}) }}" class="btn btn-success modal-ajax">Done</a>
-        <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-warning modal-ajax">Edit</a>
-        <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-danger modal-ajax">Delete</a>
-    {% elseif task.recurring %}
-        <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-warning modal-ajax">Edit</a>
-        <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-danger modal-ajax">Delete</a>
-    {% else %}
-        <a href="{{ path('task_reopen', {id: task.uuid}) }}" class="btn btn-warning modal-ajax">Reopen</a>
-    {% endif %}
-
 {% endblock %}
