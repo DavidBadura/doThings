@@ -7,7 +7,7 @@ List:
 Info:
 ![info](docs/info.png)
 
-Mobil:
+Mobile:
 ![mobil](docs/mobile.png)
 
 Installation
