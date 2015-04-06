@@ -31,4 +31,26 @@ class DefaultController extends AbstractController
             'tags'     => $info->getTags()
         ];
     }
+
+    /**
+     * @Template()
+     */
+    public function headerAction()
+    {
+        $masterRequest = $this->get('request_stack')->getMasterRequest();
+
+        $params = [];
+
+        if ($project = $masterRequest->get('project')) {
+            $params['project'] = $project;
+        }
+
+        if ($tag = $masterRequest->get('tag')) {
+            $params['project'] = $tag;
+        }
+
+        return [
+            'add_link' => $this->generateUrl('task_add', $params),
+        ];
+    }
 }

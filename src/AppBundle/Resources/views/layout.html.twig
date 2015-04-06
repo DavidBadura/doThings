@@ -35,13 +35,7 @@
 
                 {% block body %}
 
-                    <div class="brand">
-                        <a href="#" class="btn btn-primary btn-nav hidden-md hidden-lg">
-                            <span class="glyphicon glyphicon-menu-hamburger"></span>
-                        </a>
-                        doThings!<br/>
-                        <a href="{{ path('task_add') }}" class="btn btn-primary modal-ajax">Create Task</a>
-                    </div>
+                    {{ render(controller('AppBundle:Default:header')) }}
 
                     <div class="container-fluid">
                         <div class="row">

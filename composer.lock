@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/DavidBadura/Taskwarrior.git",
-                "reference": "d97173569b7b36ba2d8948cd8f1422677d5992f2"
+                "reference": "ec8ab39e7c1671ccf5bfe9aeb6bf18f624067142"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DavidBadura/Taskwarrior/zipball/d97173569b7b36ba2d8948cd8f1422677d5992f2",
-                "reference": "d97173569b7b36ba2d8948cd8f1422677d5992f2",
+                "url": "https://api.github.com/repos/DavidBadura/Taskwarrior/zipball/ec8ab39e7c1671ccf5bfe9aeb6bf18f624067142",
+                "reference": "ec8ab39e7c1671ccf5bfe9aeb6bf18f624067142",
                 "shasum": ""
             },
             "require": {
@@ -51,7 +51,7 @@
                 "task",
                 "taskwarrior"
             ],
-            "time": "2015-04-03 23:22:05"
+            "time": "2015-04-06 13:36:55"
         },
         {
             "name": "doctrine/annotations",
