@@ -31,6 +31,14 @@ class ListController extends AbstractController
     }
 
     /**
+     * @Route("/recurring", name="list_recurring")
+     */
+    public function recurringAction()
+    {
+        return $this->filterTasks('status:recurring');
+    }
+
+    /**
      * @Route("/all", name="list_all")
      */
     public function allAction()

@@ -41,7 +41,11 @@ class TaskInformation
             ],
             'waiting'      => [
                 'url'   => $this->router->generate('list_waiting'),
-                'count' => count($this->taskManager->filter('status:waiting'))
+                'count' => count($this->taskManager->filterAll('status:waiting'))
+            ],
+            'recurring'      => [
+                'url'   => $this->router->generate('list_recurring'),
+                'count' => count($this->taskManager->filterAll('status:recurring'))
             ],
             'all'      => [
                 'url'   => $this->router->generate('list_all'),

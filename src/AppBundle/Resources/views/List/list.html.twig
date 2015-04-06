@@ -5,7 +5,7 @@
     <div class="hidden-xs hidden-sm">
         {% include 'AppBundle:List:_search.html.twig' %}
     </div>
-
+    
     <div class="list-group">
         {% for task in tasks %}
             <a href="{{ path('task_info', {id: task.uuid}) }}" class="list-group-item modal-ajax">
