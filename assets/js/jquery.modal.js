@@ -36,7 +36,9 @@
 
                 complete($modal);
 
-                $modal.addClass('open');
+                setTimeout(function() {
+                    $modal.addClass('open');
+                }, 100);
 
                 $modal.find('form').submit(function(e) {
 
