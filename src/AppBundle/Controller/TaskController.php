@@ -91,7 +91,9 @@ class TaskController extends AbstractController
             'action' => $this->generateUrl('task_edit', ['id' => $task->getUuid()])
         ]);
 
-        $form->add('submit', 'submit');
+        $form->add('submit', 'submit', [
+            'attr' => ['class' => 'btn btn-secondly']
+        ]);
 
         $form->handleRequest($request);
 
