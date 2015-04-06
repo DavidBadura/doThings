@@ -24,7 +24,6 @@ body {
     }
 }
 
-
 .nav-btn-container {
     position: absolute;
     top: -10px;
@@ -117,8 +116,12 @@ body {
     &.open {
         opacity: 1;
     }
-}
 
+    .my-modal-container {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+}
 
 .btn-secondly {
     @include button-variant(#fff, $body-bg, #fff);
