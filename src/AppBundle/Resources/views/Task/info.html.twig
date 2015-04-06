@@ -3,20 +3,14 @@
 {% block content %}
     <h1>
 
-        {% if task.pending %}
+        {% if task.pending or task.waiting %}
             <a href="{{ path('task_done', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax" data-toggle="tooltip"
                data-placement="bottom" title="done">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
-            <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax" data-toggle="tooltip"
-               data-placement="bottom" title="edit">
-                <span class="glyphicon glyphicon-pencil"></span>
-            </a>
-            <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax"
-               data-toggle="tooltip" data-placement="bottom" title="delete">
-                <span class="glyphicon glyphicon-trash"></span>
-            </a>
-        {% elseif task.isRecurring() %}
+        {% endif %}
+
+        {% if task.pending or task.waiting or task.isRecurring() %}
             <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax" data-toggle="tooltip"
                data-placement="bottom" title="edit">
                 <span class="glyphicon glyphicon-pencil"></span>

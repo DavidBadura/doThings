@@ -1,6 +1,8 @@
 doThings!
 =========
 
+with the power of taskwarrior!
+
 List:
 ![list](docs/list.png)
 
