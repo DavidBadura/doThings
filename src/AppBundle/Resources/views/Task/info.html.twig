@@ -1,15 +1,9 @@
 {% extends 'AppBundle::modal.html.twig' %}
 
-{% block header %}
+{% block content %}
     <h1>{{ task.description }}</h1>
-{% endblock %}
-
-{% block body %}
 
 
-{% endblock %}
-
-{% block footer %}
     <a href="{{ path('task_done', {id: task.uuid}) }}" class="btn btn-success modal-ajax">Done</a>
     <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-warning modal-ajax">Edit</a>
     <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-danger modal-ajax">Delete</a>

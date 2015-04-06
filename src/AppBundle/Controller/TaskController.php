@@ -53,7 +53,9 @@ class TaskController extends AbstractController
             'action' => $this->generateUrl('task_add')
         ]);
 
-        $form->add('submit', 'submit');
+        $form->add('submit', 'submit', [
+            'attr' => ['class' => 'btn btn-secondly']
+        ]);
 
         $form->handleRequest($request);
 

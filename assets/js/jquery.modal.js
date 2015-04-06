@@ -22,24 +22,21 @@
             type: method,
             success: function(data, textStatus, jqXHR) {
 
-                console.log(jqXHR.status);
-
                 if (jqXHR.status == 201) {
                     window.location.reload();
                     return;
                 }
 
-                $('#ajax-form-modal').remove();
+                $('.my-modal').remove();
                 $('.modal-backdrop').remove();
 
-                var $modal = $('<div class="modal" id="ajax-form-modal" />');
+                var $modal = $(data);
 
                 $modal.appendTo('body');
 
-                $modal.modal();
-                $modal.html(data);
-
                 complete($modal);
+
+                $modal.addClass('open');
 
                 $modal.find('form').submit(function(e) {
 
@@ -51,6 +48,13 @@
                         complete,
                         "POST"
                     );
+                });
+
+                $modal.find('.btn-modal-close').click(function() {
+                    $modal.removeClass('open');
+                    setTimeout(function () {
+                        $modal.remove();
+                    }, 500);
                 });
             }
         });

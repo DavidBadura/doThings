@@ -1,13 +1,5 @@
-{% extends 'AppBundle::modal_form.html.twig' %}
+{% extends 'AppBundle::modal.html.twig' %}
 
-{% block header %}
-    <h1>Create new task</h1>
-{% endblock %}
-
-{% block body %}
-    {{ form_widget(form) }}
-{% endblock %}
-
-{% block footer %}
-    {{ form_widget(form.submit) }}
+{% block content %}
+{{ form(form) }}
 {% endblock %}
