@@ -1,7 +1,9 @@
 doThings!
 =========
 
-with the power of taskwarrior!
+**with the power of taskwarrior!**
+
+Demo: http://dothings.david-badura.de/
 
 List:
 ![list](docs/list.png)
