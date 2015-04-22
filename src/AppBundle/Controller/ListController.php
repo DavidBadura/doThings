@@ -2,9 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use DavidBadura\Taskwarrior\Task;
+use DavidBadura\Taskwarrior\QueryBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -19,7 +18,9 @@ class ListController extends AbstractController
      */
     public function listAction()
     {
-        return $this->filterTasks('status:pending');
+        return $this->filterTasks('status:pending', [
+            'urgency' => QueryBuilder::DESC
+        ]);
     }
 
     /**
@@ -27,7 +28,9 @@ class ListController extends AbstractController
      */
     public function waitingAction()
     {
-        return $this->filterTasks('status:waiting');
+        return $this->filterTasks('status:waiting', [
+            'entry' => QueryBuilder::DESC
+        ]);
     }
 
     /**
@@ -35,7 +38,9 @@ class ListController extends AbstractController
      */
     public function recurringAction()
     {
-        return $this->filterTasks('status:recurring');
+        return $this->filterTasks('status:recurring', [
+            'entry' => QueryBuilder::DESC
+        ]);
     }
 
     /**
@@ -43,7 +48,9 @@ class ListController extends AbstractController
      */
     public function allAction()
     {
-        return $this->filterTasks();
+        return $this->filterTasks('', [
+            'entry' => QueryBuilder::DESC
+        ]);
     }
 
     /**
@@ -51,7 +58,9 @@ class ListController extends AbstractController
      */
     public function tagAction($tag)
     {
-        return $this->filterTasks('+' . $tag . ' status:pending');
+        return $this->filterTasks('+' . $tag . ' status:pending', [
+            'urgency' => QueryBuilder::DESC
+        ]);
     }
 
     /**
@@ -59,7 +68,9 @@ class ListController extends AbstractController
      */
     public function projectAction($project)
     {
-        return $this->filterTasks('project:' . $project . ' status:pending');
+        return $this->filterTasks('project:' . $project . ' status:pending', [
+            'urgency' => QueryBuilder::DESC
+        ]);
     }
 
     /**
@@ -67,14 +78,16 @@ class ListController extends AbstractController
      */
     public function searchAction(Request $request)
     {
-        return $this->filterTasks(str_replace(',', ' ', $request->get('q', '')));
+        return $this->filterTasks(str_replace(',', ' ', $request->get('q', '')), [
+            'description' => QueryBuilder::ASC
+        ]);
     }
 
     /**
      * @param $filter
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function filterTasks($filter = '')
+    protected function filterTasks($filter = '', array $sortBy = [])
     {
         $form = $this->get('form.factory')->createNamed(null, 'task_search', null, [
             'action'          => $this->generateUrl('list_search'),
@@ -85,7 +98,11 @@ class ListController extends AbstractController
         $form->get('q')->setData(explode(' ', $filter));
         $form->add('submit', 'submit', ['label' => 'Search']);
 
-        $tasks = $this->getTaskManager()->filterAll($filter);
+        $tasks = $this->getTaskManager()
+            ->createQueryBuilder()
+            ->where($filter)
+            ->orderBy($sortBy)
+            ->getResult();
 
         return $this->render("AppBundle:List:list.html.twig", [
             'filter' => $filter,
