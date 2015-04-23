@@ -26,7 +26,7 @@ class DefaultController extends AbstractController
         $info = $this->get('task_information');
 
         return [
-            'lists'    => $info->getLists(),
+            'reports'  => $info->getReports(),
             'projects' => $info->getProjects(),
             'tags'     => $info->getTags()
         ];

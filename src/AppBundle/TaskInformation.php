@@ -32,26 +32,19 @@ class TaskInformation
     /**
      * @return array
      */
-    public function getLists()
+    public function getReports()
     {
-        return [
-            'my tasks' => [
-                'url'   => $this->router->generate('list'),
-                'count' => count($this->taskManager->filter())
-            ],
-            'waiting'      => [
-                'url'   => $this->router->generate('list_waiting'),
-                'count' => count($this->taskManager->filterAll('status:waiting'))
-            ],
-            'recurring'      => [
-                'url'   => $this->router->generate('list_recurring'),
-                'count' => count($this->taskManager->filterAll('status:recurring'))
-            ],
-            'all'      => [
-                'url'   => $this->router->generate('list_all'),
-                'count' => null
-            ],
-        ];
+        $reports = $this->taskManager->getTaskwarrior()->config()->getReports();
+        $list    = [];
+
+        foreach ($reports as $report) {
+            $list[$report->name] = [
+                'url'   => $this->router->generate('list_report', ['report' => $report->name]),
+                'count' => count($this->taskManager->filterByReport($report))
+            ];
+        }
+
+        return $list;
     }
 
     /**

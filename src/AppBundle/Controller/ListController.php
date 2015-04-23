@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use DavidBadura\Taskwarrior\QueryBuilder;
+use DavidBadura\Taskwarrior\Query\QueryBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,33 +24,16 @@ class ListController extends AbstractController
     }
 
     /**
-     * @Route("/waiting", name="list_waiting")
+     * @Route("/report/{report}", name="list_report")
      */
-    public function waitingAction()
+    public function reportAction($report)
     {
-        return $this->filterTasks('status:waiting', [
-            'entry' => QueryBuilder::DESC
-        ]);
-    }
+        $report = $this->getTaskManager()->getTaskwarrior()->config()->getReport($report);
 
-    /**
-     * @Route("/recurring", name="list_recurring")
-     */
-    public function recurringAction()
-    {
-        return $this->filterTasks('status:recurring', [
-            'entry' => QueryBuilder::DESC
-        ]);
-    }
-
-    /**
-     * @Route("/all", name="list_all")
-     */
-    public function allAction()
-    {
-        return $this->filterTasks('', [
-            'entry' => QueryBuilder::DESC
-        ]);
+        return $this->filterTasks(
+            $report->filter,
+            $report->sort
+        );
     }
 
     /**
@@ -84,7 +67,8 @@ class ListController extends AbstractController
     }
 
     /**
-     * @param $filter
+     * @param string $filter
+     * @param array $sortBy
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function filterTasks($filter = '', array $sortBy = [])
