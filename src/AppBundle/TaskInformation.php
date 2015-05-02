@@ -20,13 +20,20 @@ class TaskInformation
     private $router;
 
     /**
+     * @var string[]
+     */
+    private $reports;
+
+    /**
      * @param TaskManager $taskManager
      * @param Router $router
+     * @param string[] $reports
      */
-    public function __construct(TaskManager $taskManager, Router $router)
+    public function __construct(TaskManager $taskManager, Router $router, array $reports = [])
     {
         $this->taskManager = $taskManager;
         $this->router      = $router;
+        $this->reports     = $reports;
     }
 
     /**
@@ -37,10 +44,10 @@ class TaskInformation
         $reports = $this->taskManager->getTaskwarrior()->config()->getReports();
         $list    = [];
 
-        foreach ($reports as $report) {
-            $list[$report->name] = [
-                'url'   => $this->router->generate('list_report', ['report' => $report->name]),
-                'count' => count($this->taskManager->filterByReport($report))
+        foreach ($this->reports as $report) {
+            $list[$report] = [
+                'url'   => $this->router->generate('list_report', ['report' => $report]),
+                'count' => count($this->taskManager->filterByReport($reports[$report]))
             ];
         }
 

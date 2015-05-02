@@ -23,6 +23,7 @@
         <service id="task_information" class="AppBundle\TaskInformation">
             <argument type="service" id="task_manager"/>
             <argument type="service" id="router"/>
+            <argument>%reports%</argument>
         </service>
 
         <!-- Form -->
