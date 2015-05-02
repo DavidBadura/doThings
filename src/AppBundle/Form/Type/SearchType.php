@@ -32,29 +32,9 @@ class SearchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $choices = [
-            'status:' . Task::STATUS_COMPLETED,
-            'status:' . Task::STATUS_PENDING,
-            'status:' . Task::STATUS_RECURRING,
-            'status:' . Task::STATUS_WAITING,
-            'status:' . Task::STATUS_DELETED,
-            'priority:' . Task::PRIORITY_HIGH,
-            'priority:' . Task::PRIORITY_LOW,
-            'priority:' . Task::PRIORITY_MEDIUM
-        ];
-
-        foreach ($this->taskwarrior->tags() as $tag) {
-            $choices[] = '+' . $tag;
-        }
-
-        foreach ($this->taskwarrior->projects() as $project) {
-            $choices[] = 'project:' . $project;
-        }
-
         $builder
-            ->add('q', 'tag', [
-                'required' => false,
-                'choices'  => $choices
+            ->add('q', 'text', [
+                'required' => false
             ]);
     }
 

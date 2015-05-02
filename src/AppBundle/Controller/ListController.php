@@ -79,7 +79,7 @@ class ListController extends AbstractController
             'csrf_protection' => false
         ]);
 
-        $form->get('q')->setData(explode(' ', $filter));
+        $form->get('q')->setData($filter);
         $form->add('submit', 'submit', ['label' => 'Search']);
 
         $tasks = $this->getTaskManager()
