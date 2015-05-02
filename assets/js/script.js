@@ -4,12 +4,10 @@ var doThings = {};
 
     doThings.register = function($el) {
         $el.find('.datepicker').pickadate({
-            editable: true,
             format: 'yyyy-mm-dd'
         });
 
         $el.find('.timepicker').pickatime({
-            editable: true,
             format: 'H:i'
         });
 
@@ -24,8 +22,6 @@ var doThings = {};
         });
 
         $el.find(".tags").each(function() {
-            console.log(this);
-
             var $this = $(this);
 
             $this.select2({
@@ -46,7 +42,6 @@ var doThings = {};
     $(document).ready(function () {
         doThings.register($('body'));
 
-
         var $container = $('#st-container');
 
         $('.btn-nav').click(function(event) {
@@ -56,12 +51,10 @@ var doThings = {};
         });
 
         $('.st-pusher').click(function() {
-            console.log('remove');
             $container.removeClass('st-menu-open');
         });
 
         $(document).resize(function() {
-            console.log('resize');
             $container.removeClass('st-menu-open');
         });
 
