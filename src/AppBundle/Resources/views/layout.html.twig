@@ -19,37 +19,39 @@
 </head>
 <body>
 
-{% set nav = render(controller('AppBundle:Default:navigation')) %}
+{% block body %}
 
+    {% set nav = render(controller('AppBundle:Default:navigation')) %}
+    <div id="st-container" class="st-container st-effect-7">
 
-<div id="st-container" class="st-container st-effect-7">
+        <div class="st-pusher">
 
-    <div class="st-pusher">
+            <nav class="st-menu st-effect-7" id="menu-1">
+                {{ nav|raw }}
+            </nav>
 
-        <nav class="st-menu st-effect-7" id="menu-1">
-            {{ nav|raw }}
-        </nav>
+            <div class="st-content">
+                <div class="st-content-inner">
 
-        <div class="st-content">
-            <div class="st-content-inner">
+                    {% block container %}
 
-                {% block body %}
+                        {{ render(controller('AppBundle:Default:header')) }}
 
-                    {{ render(controller('AppBundle:Default:header')) }}
-
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-3 hidden-xs hidden-sm">{{ nav|raw }}</div>
-                            <div class="col-md-9">{% block content %}{% endblock %}</div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-3 hidden-xs hidden-sm">{{ nav|raw }}</div>
+                                <div class="col-md-9">{% block content %}{% endblock %}</div>
+                            </div>
                         </div>
-                    </div>
 
-                {% endblock %}
+                    {% endblock %}
 
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+{% endblock %}
 
 <script src="{{ asset('js/script.js') }}"></script>
 </body>

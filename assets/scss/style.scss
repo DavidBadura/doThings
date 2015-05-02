@@ -3,6 +3,7 @@
 
 body {
     background: $body-bg;
+    color: #fff;
 }
 
 .brand {
@@ -28,6 +29,12 @@ body {
     position: absolute;
     top: -10px;
     left: 10px;
+}
+
+.logout-btn-container {
+    position: absolute;
+    top: -10px;
+    right: 10px;
 }
 
 .menu {
@@ -86,6 +93,10 @@ body {
             }
         }
     }
+}
+
+.st-content {
+    color: #4E3F30;
 }
 
 .my-modal {

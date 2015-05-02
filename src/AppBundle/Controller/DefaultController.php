@@ -19,6 +19,41 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * @Route("/login", name="login")
+     * @Template()
+     */
+    public function loginAction()
+    {
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        $error        = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return [
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ];
+    }
+
+    /**
+     * @Route("/login_check", name="login_check")
+     */
+    public function loginCheckAction()
+    {
+        // this controller will not be executed,
+        // as the route is handled by the Security system
+    }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logoutAction()
+    {
+        // this controller will not be executed,
+        // as the route is handled by the Security system
+    }
+
+    /**
      * @Template()
      */
     public function navigationAction()

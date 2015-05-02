@@ -14,3 +14,6 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     reports: ["next", "all", "active", "overdue", "recurring"]
+
+    username: dothings
+    password: dothings
