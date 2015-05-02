@@ -65,7 +65,7 @@ class TaskInformation
         foreach ($taskwarrior->projects() as $project) {
             $projects[$project] = [
                 'url'   => $this->router->generate('list_project', ['project' => $project]),
-                'count' => count($this->taskManager->filter('project:' . $project))
+                'count' => count($this->taskManager->filterPending('project:' . $project))
             ];
         }
 
@@ -83,7 +83,7 @@ class TaskInformation
         foreach ($taskwarrior->tags() as $tag) {
             $tags[$tag] = [
                 'url'   => $this->router->generate('list_tag', ['tag' => $tag]),
-                'count' => count($this->taskManager->filter('+' . $tag))
+                'count' => count($this->taskManager->filterPending('+' . $tag))
             ];
         }
 
