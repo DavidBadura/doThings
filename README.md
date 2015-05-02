@@ -3,7 +3,13 @@ doThings!
 
 **with the power of taskwarrior!**
 
-Demo: http://dothings.david-badura.de/
+## Demo
+
+|Key|Value|
+|---|-----|
+|Url|http://demo-dothings.david-badura.de/|
+|Username|dothings|
+|Password|dothings|
 
 List:
 ![list](docs/list.png)
