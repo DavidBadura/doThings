@@ -21,7 +21,6 @@ class TaskController extends AbstractController
      *
      * @param string $id
      * @return array
-     * @throws \DavidBadura\Taskwarrior\TaskwarriorException
      */
     public function infoAction($id)
     {
@@ -77,7 +76,6 @@ class TaskController extends AbstractController
      * @param Request $request
      * @param string $id
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \DavidBadura\Taskwarrior\TaskwarriorException
      */
     public function editAction(Request $request, $id)
     {
@@ -115,7 +113,6 @@ class TaskController extends AbstractController
      * @param Request $request
      * @param string $id
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \DavidBadura\Taskwarrior\TaskwarriorException
      */
     public function doneAction(Request $request, $id)
     {
@@ -136,7 +133,6 @@ class TaskController extends AbstractController
      * @param Request $request
      * @param string $id
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \DavidBadura\Taskwarrior\TaskwarriorException
      */
     public function deleteAction(Request $request, $id)
     {
@@ -157,7 +153,6 @@ class TaskController extends AbstractController
      * @param Request $request
      * @param string $id
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \DavidBadura\Taskwarrior\TaskwarriorException
      */
     public function reopenAction(Request $request, $id)
     {

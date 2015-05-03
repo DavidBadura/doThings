@@ -13,7 +13,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    reports: ["next", "all", "active", "overdue", "recurring"]
+    reports: ["next", "all", "overdue", "recurring"]
 
     username: dothings
     password: dothings
