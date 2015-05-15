@@ -37,16 +37,16 @@
             <tag name="form.type" alias="task_search"/>
         </service>
 
-        <service id="form.type.autocomplete" class="AppBundle\Form\Type\AutocompleteType">
-            <tag name="form.type" alias="autocomplete"/>
-        </service>
-
         <service id="form.type.tag" class="AppBundle\Form\Type\TagType">
             <tag name="form.type" alias="tag"/>
         </service>
 
         <service id="form.type.recurring" class="AppBundle\Form\Type\RecurringType">
             <tag name="form.type" alias="recurring"/>
+        </service>
+
+        <service id="form.typ_extension.data_list" class="AppBundle\Form\Extension\DataListExtension">
+            <tag name="form.type_extension" alias="text"/>
         </service>
 
         <!-- Validator -->

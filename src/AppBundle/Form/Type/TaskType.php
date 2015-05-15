@@ -35,7 +35,8 @@ class TaskType extends AbstractType
         $builder
             ->add('description', 'text')
             ->add('project', 'text', [
-                'required' => false
+                'required' => false,
+                'datalist' => $this->taskwarrior->projects()
             ])
             ->add('priority', 'choice', [
                 'required' => false,

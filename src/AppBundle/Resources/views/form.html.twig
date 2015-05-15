@@ -41,3 +41,17 @@
         {% endif %}
     {% endif %}
 {%- endblock time_widget %}
+
+
+{% block form_widget_simple -%}
+    {{ parent() }}
+
+    {% if datalist is defined %}
+        <datalist id="{{ datalist_id }}">
+            {% for item in datalist %}
+            <option value="{{ item }}">
+            {% endfor %}
+        </datalist>
+    {% endif %}
+{%- endblock %}
+
