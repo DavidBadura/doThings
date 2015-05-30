@@ -1,5 +1,8 @@
 {
   "name": "dothings",
+  "scripts": {
+    "postinstall": "./node_modules/.bin/gulp"
+  },
   "devDependencies": {
     "bootstrap-sass": "^3.3.4",
     "gulp": "^3.8.11",
