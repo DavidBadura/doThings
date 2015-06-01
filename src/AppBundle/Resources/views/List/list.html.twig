@@ -9,19 +9,19 @@
     <div class="list-group">
         {% for task in tasks %}
             <a href="{{ path('task_info', {id: task.uuid}) }}" class="list-group-item modal-ajax">
-                
+
                 <h4 class="list-group-item-heading">
 
                     {% if task.pending %}
-                        <i class="glyphicon glyphicon-eye-open"></i>
+                        <i class="glyphicon glyphicon-eye-open" title="pending"></i>
                     {% elseif task.completed %}
-                        <i class="glyphicon glyphicon-ok"></i>
+                        <i class="glyphicon glyphicon-ok" title="completed"></i>
                     {% elseif task.deleted %}
-                        <i class="glyphicon glyphicon-trash"></i>
+                        <i class="glyphicon glyphicon-trash" title="deleted"></i>
                     {% elseif task.waiting %}
-                        <i class="glyphicon glyphicon-time"></i>
+                        <i class="glyphicon glyphicon-time" title="waiting"></i>
                     {% elseif task.isRecurring %}
-                        <i class="glyphicon glyphicon-refresh"></i>
+                        <i class="glyphicon glyphicon-refresh" title="recurring"></i>
                     {% endif %}
 
                     {{ task.description }}
