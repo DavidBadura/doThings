@@ -17,3 +17,6 @@ parameters:
 
     username: dothings
     password: dothings
+
+    urgency_threshold_high: 20
+    urgency_threshold_medium: 10

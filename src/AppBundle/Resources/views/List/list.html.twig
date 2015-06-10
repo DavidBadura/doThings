@@ -8,7 +8,13 @@
 
     <div class="list-group">
         {% for task in tasks %}
-            <a href="{{ path('task_info', {id: task.uuid}) }}" class="list-group-item modal-ajax">
+            {% set urgency = "low" %}
+            {% if task.urgency > urgency_threshold.high %}
+                {% set urgency = "high" %}
+            {% elseif task.urgency > urgency_threshold.medium %}
+                {% set urgency = "medium" %}
+            {% endif %}
+            <a href="{{ path('task_info', {id: task.uuid}) }}" class="list-group-item urgency-{{ urgency }} modal-ajax">
 
                 <h4 class="list-group-item-heading">
 
@@ -41,6 +47,7 @@
                         <span class="label label-default">{{ tag }}</span>
                     {% endfor %}
                 </p>
+
             </a>
         {% else %}
             <a href="#" class="list-group-item disabled">

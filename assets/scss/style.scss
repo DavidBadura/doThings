@@ -138,3 +138,11 @@ body {
 .btn-secondly {
     @include button-variant(#fff, $body-bg, #fff);
 }
+
+.urgency-high {
+    border-left:0.3em solid red;
+}
+
+.urgency-medium {
+    border-left:0.3em solid orange;
+}
