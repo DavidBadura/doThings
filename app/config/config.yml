@@ -32,6 +32,10 @@ twig:
     form:
         resources:
             - 'AppBundle::form.html.twig'
+    globals:
+        urgency_threshold:
+            high:   %urgency_threshold_high%
+            medium: %urgency_threshold_medium%
 
 # Swiftmailer Configuration
 swiftmailer:
