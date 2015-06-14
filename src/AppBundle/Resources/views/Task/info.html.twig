@@ -26,16 +26,51 @@
             </a>
         {% endif %}
 
+        &nbsp;
+
+        {% if task.start %}
+            <a href="{{ path('task_stop', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax"
+               data-toggle="tooltip" data-placement="bottom" title="stop activity">
+                <span class="glyphicon glyphicon-stop"></span>
+            </a>
+        {% else %}
+            <a href="{{ path('task_start', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax"
+               data-toggle="tooltip" data-placement="bottom" title="start working on this">
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        {% endif %}
+
+        &nbsp;
+
+        {% if not task.waiting %}
+            <div class="btn-group">
+                <a href="{{ path('task_do_wait', {id: task.uuid, duration: "1day"}) }}" class="btn btn-secondly modal-ajax"
+                   data-toggle="tooltip" data-placement="bottom" title="wait until tomorrow">
+                    +1d
+                </a>
+                <a href="{{ path('task_do_wait', {id: task.uuid, duration: "1week"}) }}" class="btn btn-secondly modal-ajax"
+                   data-toggle="tooltip" data-placement="bottom" title="wait until next week">
+                    +1w
+                </a>
+            </div>
+        {% else %}
+            <a href="{{ path('task_do_wait', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax"
+               data-toggle="tooltip" data-placement="bottom" title="remove waiting status">
+                now
+            </a>
+        {% endif %}
+
     </h1>
+    <h2>{{ task.description }}</h2>
 
     <table class="table">
         <tr>
-            <td>Uuid</td>
-            <td>{{ task.uuid }}</td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td>{{ task.description }}</td>
+            <td>Tags</td>
+            <td>
+                {% for tag in task.tags %}
+                <span class="label label-default">{{ tag }}</span>
+                {% endfor %}
+            </td>
         </tr>
         <tr>
             <td>Project</td>
@@ -44,10 +79,6 @@
         <tr>
             <td>Priority</td>
             <td>{{ task.priority|default('-') }}</td>
-        </tr>
-        <tr>
-            <td>Tags</td>
-            <td>{{ task.tags|join(', ')|default('-') }}</td>
         </tr>
         <tr>
             <td>Due</td>
@@ -67,7 +98,7 @@
         </tr>
         <tr>
             <td>Urgency</td>
-            <td>{{ task.urgency|default('-') }}</td>
+            <td>{{ "%.2f"|format(task.urgency) }}</td>
         </tr>
         <tr>
             <td>Status</td>
@@ -84,6 +115,10 @@
         <tr>
             <td>End</td>
             <td>{{ task.end|default('-') }}</td>
+        </tr>
+        <tr>
+            <td>Uuid</td>
+            <td>{{ task.uuid }}</td>
         </tr>
     </table>
 {% endblock %}
