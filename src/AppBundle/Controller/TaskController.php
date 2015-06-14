@@ -108,13 +108,50 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/done", name="task_done")
+     * @Route("/{id}/stop", name="task_stop")
      *
-     * @param Request $request
      * @param string $id
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function doneAction(Request $request, $id)
+    public function stop($id)
+    {
+        $task = $this->getTaskManager()->find($id);
+
+        if (!$task) {
+            throw $this->createNotFoundException();
+        }
+
+        $this->getTaskManager()->stop($task);
+
+        return new Response('', 201);
+    }
+
+    /**
+     * @Route("/{id}/start", name="task_start")
+     *
+     * @param string $id
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function startAction($id)
+    {
+        $task = $this->getTaskManager()->find($id);
+
+        if (!$task) {
+            throw $this->createNotFoundException();
+        }
+
+        $this->getTaskManager()->start($task);
+
+        return new Response('', 201);
+    }
+
+    /**
+     * @Route("/{id}/done", name="task_done")
+     *
+     * @param string $id
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function doneAction($id)
     {
         $task = $this->getTaskManager()->find($id);
 
@@ -123,6 +160,27 @@ class TaskController extends AbstractController
         }
 
         $this->getTaskManager()->done($task);
+
+        return new Response('', 201);
+    }
+
+    /**
+     * @Route("/{id}/do-wait", name="task_do_wait")
+     *
+     * @param Request $request
+     * @param string $id
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function doWaitAction(Request $request, $id)
+    {
+        $task = $this->getTaskManager()->find($id);
+
+        if (!$task) {
+            throw $this->createNotFoundException();
+        }
+
+        $task->setWait($request->get('duration'));
+        $this->getTaskManager()->save($task);
 
         return new Response('', 201);
     }
