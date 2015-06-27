@@ -82,11 +82,11 @@
         </tr>
         <tr>
             <td>Due</td>
-            <td>{{ task.due|default('-') }}</td>
+            <td><date>{{ task.due|default('-') }}</date></td>
         </tr>
         <tr>
             <td>Wait</td>
-            <td>{{ task.wait|default('-') }}</td>
+            <td><date>{{ task.wait|default('-') }}</date></td>
         </tr>
         <tr>
             <td>Recurring</td>
@@ -94,7 +94,7 @@
         </tr>
         <tr>
             <td>Until</td>
-            <td>{{ task.until|default('-') }}</td>
+            <td><date>{{ task.until|default('-') }}</date></td>
         </tr>
         <tr>
             <td>Urgency</td>
@@ -106,15 +106,15 @@
         </tr>
         <tr>
             <td>Entry</td>
-            <td>{{ task.entry|default('-') }}</td>
+            <td><date>{{ task.entry|default('-') }}</date></td>
         </tr>
         <tr>
             <td>Modified</td>
-            <td>{{ task.modified|default('-') }}</td>
+            <td><date>{{ task.modified|default('-') }}</date></td>
         </tr>
         <tr>
             <td>End</td>
-            <td>{{ task.end|default('-') }}</td>
+            <td><date>{{ task.end|default('-') }}</date></td>
         </tr>
         <tr>
             <td>Uuid</td>
