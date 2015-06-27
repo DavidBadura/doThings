@@ -39,22 +39,15 @@ var doThings = {};
         $el.find('[data-toggle="tooltip"]').tooltip();
 
         $el.find('date').each(function() {
-            console.log($(this));
 
             var dateString = $(this).text();
             var date = moment(dateString);
-            var now = moment();
-
+            
             if (!date.isValid()) {
                 return;
             }
 
-            if (date > now) {
-                $(this).text(date.toNow());
-            } else {
-                $(this).text(date.fromNow());
-            }
-
+            $(this).text(date.fromNow());
             $(this).attr('title', dateString).tooltip();
         });
     };
