@@ -40,7 +40,8 @@
                     {% endif %}
 
                     {% if task.due %}
-                        <span class="label label-warning">Due: <date>{{ task.due }}</date></span>
+                        <span class="label {% if task.due > date() %}label-warning{% else %}label-danger{% endif %}">
+                            Due: <date>{{ task.due }}</date></span>
                     {% endif %}
 
                     {% for tag in task.tags %}
