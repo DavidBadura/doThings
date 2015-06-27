@@ -14,7 +14,8 @@
             {% elseif task.urgency > urgency_threshold.medium %}
                 {% set urgency = "medium" %}
             {% endif %}
-            <a href="{{ path('task_info', {id: task.uuid}) }}" class="list-group-item urgency-{{ urgency }} modal-ajax">
+            <a href="{{ path('task_info', {id: task.uuid}) }}"
+               class="list-group-item urgency-{{ urgency }} modal-ajax  {% if task.start %}list-group-item-warning{% endif %}">
 
                 <h4 class="list-group-item-heading">
 
