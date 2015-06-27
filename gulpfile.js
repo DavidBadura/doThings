@@ -1,30 +1,37 @@
-var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    concat = require('gulp-concat'),
-    minifyCSS = require('gulp-minify-css');
+var gulp = require('gulp');
+var concat = require('gulp-concat');
+var minifyCSS = require('gulp-minify-css');
+
+var postcss = require('gulp-postcss');
+var simplevars = require('postcss-simple-vars');
+var autoprefixer = require('autoprefixer');
+var nestedcss = require('postcss-nested');
+var postcss_import = require("postcss-import");
 
 gulp.task('default', ['css', 'js', 'fonts']);
 
-gulp.task('sass', function () {
-    gulp.src('assets/scss/style.scss')
-        .pipe(sass({includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/'], errLogToConsole: true}))
-        .pipe(gulp.dest('web/css/'))
-    ;
-});
+gulp.task('css', function () {
 
-gulp.task('css', ['sass'], function () {
+    var processors = [
+        postcss_import,
+        autoprefixer({browsers: ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4']}),
+        simplevars,
+        nestedcss
+    ];
 
     var files = [
         'node_modules/select2/select2-bootstrap.css',
         'node_modules/select2/select2.css',
         'assets/css/component.css',
-        'web/css/style.css',
+        'node_modules/bootstrap-sass/assets/stylesheets/*',
+        'assets/css/style.css',
         'node_modules/pickadate/lib/themes/default.css',
         'node_modules/pickadate/lib/themes/default.date.css',
         'node_modules/pickadate/lib/themes/default.time.css'
     ];
 
     gulp.src(files)
+        .pipe(postcss(processors))
         .pipe(concat('all.css'))
         .pipe(gulp.dest('web/css/'))
         .pipe(minifyCSS())
