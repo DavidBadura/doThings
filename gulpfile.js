@@ -47,6 +47,7 @@ gulp.task('js', function () {
         'node_modules/pickadate/lib/picker.date.js',
         'node_modules/pickadate/lib/picker.time.js',
         'node_modules/moment/min/moment.min.js',
+        'node_modules/mousetrap/mousetrap.js',
         'assets/js/jquery.modal.js',
         'assets/js/script.js'
     ])

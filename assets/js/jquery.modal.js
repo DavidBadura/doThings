@@ -58,6 +58,12 @@
                         $modal.remove();
                     }, 500);
                 });
+
+                $modal.on('keyup', function(event) {
+                    if (event.keyCode == 27) {
+                        $modal.find('.btn-modal-close').click();
+                    }
+                });
             }
         });
     };

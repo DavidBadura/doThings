@@ -50,6 +50,16 @@ var doThings = {};
             $(this).text(date.fromNow());
             $(this).attr('title', dateString).tooltip();
         });
+
+        $el.find('[data-hotkey]').each(function() {
+            var $this = $(this);
+            Mousetrap.bind($this.data('hotkey'), function(e) {
+                $this.click();
+                return false;
+            });
+        });
+
+        $el.find('[autofocus]').focus();
     };
 
     $(document).ready(function () {

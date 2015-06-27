@@ -35,7 +35,9 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description', 'text')
+            ->add('description', 'text', [
+                'attr' => ["autofocus" => true]
+            ])
             ->add('project', 'text', [
                 'required' => false,
                 'datalist' => $this->taskwarrior->projects()
