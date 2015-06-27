@@ -6,6 +6,8 @@ use DavidBadura\Taskwarrior\Task;
 use DavidBadura\Taskwarrior\Taskwarrior;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -68,6 +70,26 @@ class TaskType extends AbstractType
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
             ]);
+
+        $builder->get('due')->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event) {
+            $data = $event->getData();
+
+            if ($data['date'] && !$data['time']) {
+                $data['time'] = '23:30';
+            }
+
+            $event->setData($data);
+        });
+
+        $builder->get('wait')->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event) {
+            $data = $event->getData();
+
+            if ($data['date'] && !$data['time']) {
+                $data['time'] = '00:00';
+            }
+
+            $event->setData($data);
+        });
     }
 
     /**
