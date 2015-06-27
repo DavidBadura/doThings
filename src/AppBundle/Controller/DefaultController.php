@@ -81,7 +81,7 @@ class DefaultController extends AbstractController
         }
 
         if ($tag = $masterRequest->get('tag')) {
-            $params['project'] = $tag;
+            $params['tags'] = $tag;
         }
 
         return [

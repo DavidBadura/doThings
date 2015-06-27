@@ -46,7 +46,7 @@ class TaskController extends AbstractController
     {
         $task = new Task();
         $task->setProject($request->get('project', null));
-        $task->setTags($request->get('tags', []));
+        $task->setTags((array)$request->get('tags', []));
 
         $form = $this->createForm('task', $task, [
             'action' => $this->generateUrl('task_add')
