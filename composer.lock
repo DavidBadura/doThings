@@ -4,11 +4,11 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "31915f8b763c8f911d50a1db36535b2f",
+    "hash": "cc11414fbb8e1e48067477fdca2191ee",
     "packages": [
         {
             "name": "davidbadura/taskwarrior",
-            "version": "dev-master",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DavidBadura/Taskwarrior.git",
@@ -2435,9 +2435,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "davidbadura/taskwarrior": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
