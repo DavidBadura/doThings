@@ -1,7 +1,7 @@
 {{ form_start(form, {attr: {class: 'form-inline'}}) }}
 <div class="form-group" style="margin-bottom: 20px">
     <div class="input-group">
-        {{ form_widget(form.q, {attr: {class: 'form-control', style: 'width: 500px'}}) }}
+        {{ form_widget(form.q, {attr: {class: 'form-control', style: 'width: 500px', 'data-hotkey': 's'}}) }}
         <span class="input-group-btn">
             {{ form_widget(form.submit, {attr: {class: 'btn btn-primary btn-search'}}) }}
         </span>

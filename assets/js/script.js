@@ -54,7 +54,7 @@ var doThings = {};
         $el.find('[data-hotkey]').each(function() {
             var $this = $(this);
             Mousetrap.bind($this.data('hotkey'), function(e) {
-                $this.click();
+                $this.val('').focus().click();
                 return false;
             });
         });
