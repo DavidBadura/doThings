@@ -19,6 +19,12 @@ security:
 
         # secures part of the application
         main:
+            remember_me:
+                key: "%secret%"
+                lifetime: 604800
+                path: /
+                name: dothings_remember
+                always_remember_me: true
             pattern:    ^/
             form_login:
                 check_path: login_check
@@ -29,4 +35,4 @@ security:
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }
