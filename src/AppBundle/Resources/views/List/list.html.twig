@@ -40,7 +40,10 @@
                         <span class="label label-success">Project: {{ task.project }}</span>
                     {% endif %}
 
-                    {% if task.due %}
+                    {% if task.isRecurring %}
+                        <span class="label label-warning">
+                            Recur: {{ task.recurring }}</span>
+                    {% elseif task.due %}
                         <span class="label {% if task.due > date() %}label-warning{% else %}label-danger{% endif %}">
                             Due: <date>{{ task.due }}</date></span>
                     {% endif %}
