@@ -41,7 +41,7 @@ class TaskInformation
      */
     public function getReports()
     {
-        $reports = $this->taskManager->getTaskwarrior()->config()->getReports();
+        $reports = $this->getTaskwarrior()->config()->getReports();
         $list    = [];
 
         foreach ($this->reports as $report) {
@@ -61,8 +61,7 @@ class TaskInformation
     {
         $projects = [];
 
-        $taskwarrior = $this->taskManager->getTaskwarrior();
-        foreach ($taskwarrior->projects() as $project) {
+        foreach ($this->getTaskwarrior()->projects() as $project) {
             $projects[$project] = [
                 'url'   => $this->router->generate('list_project', ['project' => $project]),
                 'count' => count($this->taskManager->filterPending('project:' . $project))
@@ -79,14 +78,29 @@ class TaskInformation
     {
         $tags = [];
 
-        $taskwarrior = $this->taskManager->getTaskwarrior();
-        foreach ($taskwarrior->tags() as $tag) {
+        foreach ($this->getTaskwarrior()->tags() as $tag) {
             $tags[$tag] = [
                 'url'   => $this->router->generate('list_tag', ['tag' => $tag]),
                 'count' => count($this->taskManager->filterPending('+' . $tag))
             ];
         }
 
+        uasort($tags, function ($tagA, $tagB) {
+            return $tagB['count'] - $tagA['count'];
+        });
+
+        $tags = array_filter(
+            $tags,
+            function ($tag) {
+                return $tag['count'] > 0;
+            }
+        );
+
         return $tags;
+    }
+
+    private function getTaskwarrior()
+    {
+        return $this->taskManager->getTaskwarrior();
     }
 }
