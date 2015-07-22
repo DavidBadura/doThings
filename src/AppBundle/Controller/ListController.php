@@ -14,16 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 class ListController extends AbstractController
 {
     /**
-     * @Route("/", name="list")
-     */
-    public function listAction()
-    {
-        return $this->filterTasks('status:pending', [
-            'urgency' => QueryBuilder::DESC
-        ]);
-    }
-
-    /**
      * @Route("/report/{report}", name="list_report")
      */
     public function reportAction($report)

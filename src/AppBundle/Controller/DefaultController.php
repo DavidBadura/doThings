@@ -15,7 +15,7 @@ class DefaultController extends AbstractController
      */
     public function indexAction()
     {
-        return $this->redirectToRoute('list');
+        return $this->redirectToRoute('list_report', ['report' => $this->getParameter('default_report')]);
     }
 
     /**
