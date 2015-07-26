@@ -46,7 +46,7 @@ class TaskInformation
 
         foreach ($this->reports as $report) {
             $list[$report] = [
-                'url'   => $this->router->generate('list_report', ['report' => $report]),
+                'url'   => $this->router->generate('list', ['q' => 'report:' . $report]),
                 'count' => count($this->taskManager->filterByReport($reports[$report]))
             ];
         }
@@ -64,7 +64,7 @@ class TaskInformation
         $taskwarrior = $this->taskManager->getTaskwarrior();
         foreach ($taskwarrior->projects() as $project) {
             $projects[$project] = [
-                'url'   => $this->router->generate('list_project', ['project' => $project]),
+                'url'   => $this->router->generate('list', ['q' => 'project:' . $project]),
                 'count' => count($this->taskManager->filterPending('project:' . $project))
             ];
         }
@@ -82,7 +82,7 @@ class TaskInformation
         $taskwarrior = $this->taskManager->getTaskwarrior();
         foreach ($taskwarrior->tags() as $tag) {
             $tags[$tag] = [
-                'url'   => $this->router->generate('list_tag', ['tag' => $tag]),
+                'url'   => $this->router->generate('list', ['q' => '+' . $tag]),
                 'count' => count($this->taskManager->filterPending('+' . $tag))
             ];
         }

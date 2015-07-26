@@ -14,40 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ListController extends AbstractController
 {
     /**
-     * @Route("/report/{report}", name="list_report")
-     */
-    public function reportAction($report)
-    {
-        $report = $this->getTaskManager()->getTaskwarrior()->config()->getReport($report);
-
-        return $this->filterTasks(
-            $report->filter,
-            $report->sort
-        );
-    }
-
-    /**
-     * @Route("/tag/{tag}", name="list_tag")
-     */
-    public function tagAction($tag)
-    {
-        return $this->filterTasks('+' . $tag . ' status:pending', [
-            'urgency' => QueryBuilder::DESC
-        ]);
-    }
-
-    /**
-     * @Route("/project/{project}", name="list_project")
-     */
-    public function projectAction($project)
-    {
-        return $this->filterTasks('project:' . $project . ' status:pending', [
-            'urgency' => QueryBuilder::DESC
-        ]);
-    }
-
-    /**
-     * @Route("/search", name="list_search")
+     * @Route("/", name="list")
      */
     public function searchAction(Request $request)
     {
@@ -64,7 +31,7 @@ class ListController extends AbstractController
     protected function filterTasks($filter = '', array $sortBy = [])
     {
         $form = $this->get('form.factory')->createNamed(null, 'task_search', null, [
-            'action'          => $this->generateUrl('list_search'),
+            'action'          => $this->generateUrl('list'),
             'method'          => 'get',
             'csrf_protection' => false
         ]);
@@ -72,16 +39,41 @@ class ListController extends AbstractController
         $form->get('q')->setData($filter);
         $form->add('submit', 'submit', ['label' => 'Search']);
 
-        $tasks = $this->getTaskManager()
-            ->createQueryBuilder()
-            ->where($filter)
-            ->orderBy($sortBy)
-            ->getResult();
+        $filterAndReport = $this->splitReportFromFilter($filter);
+
+        if (empty($filterAndReport['report'])) {
+            $tasks = $this->getTaskManager()
+                ->createQueryBuilder()
+                ->where($filter)
+                ->orderBy($sortBy)
+                ->getResult();
+        } else {
+            $tasks = $this->getTaskManager()->filterByReport(
+                $filterAndReport['report'],
+                $filterAndReport['filter']
+            );
+        }
 
         return $this->render("AppBundle:List:list.html.twig", [
             'filter' => $filter,
             'tasks'  => $tasks,
             'form'   => $form->createView()
         ]);
+    }
+
+    private function splitReportFromFilter($filter)
+    {
+        if (!preg_match('/report:([a-z0-9]+)/i', $filter, $matches)) {
+            return [
+                'report' => null,
+                'filter' => $filter
+            ];
+        }
+
+        return [
+            'report' => $matches[1],
+            'filter' => str_replace('report:' . $matches[1], '', $filter)
+        ];
+
     }
 }
