@@ -38,7 +38,7 @@ body {
 }
 
 a .quiet {
-    color: lighten(#4E3F30, 30%);
+    color: lighten($brand-primary, 30%);
 }
 
 .menu {
