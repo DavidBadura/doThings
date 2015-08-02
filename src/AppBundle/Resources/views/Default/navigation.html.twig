@@ -1,24 +1,24 @@
 {% import _self as _ %}
 
-<ul class="menu list-unstyled">
-    {{ _.section('Reports', reports) }}
-    {{ _.section('Projects', projects) }}
-    {{ _.section('Tags', tags) }}
-</ul>
+<nav>
+    <ul>
+        {{ _.section('Reports', reports) }}
+        {{ _.section('Projects', projects) }}
+        {{ _.section('Tags', tags) }}
+    </ul>
+</nav>
 
 {% macro section(header, list) %}
-    {% if list|length %}
-        <li class="header">{{ header }}</li>
-
-        {% for label,data in list %}
-            <li>
-                <a href="{{ data.url }}">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="badge bg-primary">{{ data.count }}</span>
-                    {{ label }}
-                </a>
-            </li>
-        {% endfor %}
-
-    {% endif %}
+    {{ header }}
+    <ul>
+    {% for label,data in list %}
+        <li>
+            <a href="{{ data.url }}">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="badge">{{ data.count }}</span>
+                {{ label }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
 {% endmacro %}

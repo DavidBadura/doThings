@@ -1,0 +1,14 @@
+:root {
+    --primary: #007a99;
+    --primary-lighter: color(var(--primary) l(30%));
+    --primary-darker: color(var(--primary) l(20%));
+
+    --white: color(var(--primary) l(97%));
+    --black: color(var(--primary) l(10%));
+
+    --link-color: var(--black);
+
+    --navbar-bg: var(--black);
+    --navbar-color: var(--primary);
+    --navbar-logo-color: var(--white);
+}

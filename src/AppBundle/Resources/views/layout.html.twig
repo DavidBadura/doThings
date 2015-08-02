@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
     <title>doThings!</title>
 
-    <!-- Bootstrap -->
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -20,37 +19,30 @@
 <body>
 
 {% block body %}
+    <div class="navigation-sidebar">
 
-    {% set nav = render(controller('AppBundle:Default:navigation')) %}
-    <div id="st-container" class="st-container st-effect-7">
+        <span class="logo">doThings!</span>
 
-        <div class="st-pusher">
-
-            <nav class="st-menu st-effect-7" id="menu-1">
-                {{ nav|raw }}
-            </nav>
-
-            <div class="st-content">
-                <div class="st-content-inner">
-
-                    {% block container %}
-
-                        {{ render(controller('AppBundle:Default:header')) }}
-
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-3 hidden-xs hidden-sm">{{ nav|raw }}</div>
-                                <div class="col-md-9">{% block content %}{% endblock %}</div>
-                            </div>
-                        </div>
-
-                    {% endblock %}
-
-                </div>
-            </div>
-        </div>
+        {{ render(controller('AppBundle:Default:navigation')) }}
     </div>
 
+    <div class="main-container">
+
+        {% block container %}
+
+            <div class="header">
+                {% block header %}
+                    {{ render(controller('AppBundle:Default:header')) }}
+                {% endblock %}
+            </div>
+
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+
+        {% endblock %}
+
+    </div>
 {% endblock %}
 
 <script src="{{ asset('js/script.js') }}"></script>
