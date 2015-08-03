@@ -10,14 +10,21 @@
     {% if list|length %}
         <li class="header">{{ header }}</li>
 
+        {% set last_label = '' %}
         {% for label,data in list %}
             <li>
                 <a href="{{ data.url }}">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     <span class="badge bg-primary">{{ data.count }}</span>
-                    {{ label }}
+                    {% set matching_segment = longest_matching_segment(label, last_label) %}
+                    {% if matching_segment %}
+                        <span class="quiet">{{ matching_segment }}</span>{{ label|replace({(matching_segment): ""}) }}
+                    {% else %}
+                        {{ label }}
+                    {% endif %}
                 </a>
             </li>
+            {% set last_label = label %}
         {% endfor %}
 
     {% endif %}

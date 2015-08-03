@@ -37,6 +37,10 @@ body {
     right: 10px;
 }
 
+a .quiet {
+    color: lighten($brand-primary, 30%);
+}
+
 .menu {
     li {
         border-bottom: 1px solid $brand-primary;
