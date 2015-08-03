@@ -16,8 +16,9 @@
                 <a href="{{ data.url }}">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     <span class="badge bg-primary">{{ data.count }}</span>
-                    {% if last_label|length > 0 and label starts with last_label %}
-                        <span class="quiet">{{ last_label }}</span>{{ label|replace({(last_label): ""}) }}
+                    {% set matching_segment = longest_matching_segment(label, last_label) %}
+                    {% if matching_segment %}
+                        <span class="quiet">{{ matching_segment }}</span>{{ label|replace({(matching_segment): ""}) }}
                     {% else %}
                         {{ label }}
                     {% endif %}
