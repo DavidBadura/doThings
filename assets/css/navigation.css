@@ -1,0 +1,29 @@
+nav.main {
+    ul {
+        margin: 5px 0 20px 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        margin: 0;
+        padding: 0;
+
+        a {
+            padding: 2px 5px;
+            display: block;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .badge {
+            float: right;
+            color: var(--text-color-darker);
+            font-size: 0.8em;
+        }
+
+        .label {
+            margin-left: 5px;
+        }
+    }
+}

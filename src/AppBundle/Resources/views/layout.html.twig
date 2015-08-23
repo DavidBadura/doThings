@@ -7,6 +7,8 @@
 
     <title>doThings!</title>
 
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,28 +21,19 @@
 <body>
 
 {% block body %}
-    <div class="navigation-sidebar">
+    <div class="main-navigation">
+        <div class="header">
+            <span class="logo" title="doThings!">doThings!</span>
+        </div>
 
-        <span class="logo">doThings!</span>
-
-        {{ render(controller('AppBundle:Default:navigation')) }}
+        <div class="content">
+            {{ render(controller('AppBundle:Default:navigation')) }}
+        </div>
     </div>
 
     <div class="main-container">
 
-        {% block container %}
-
-            <div class="header">
-                {% block header %}
-                    {{ render(controller('AppBundle:Default:header')) }}
-                {% endblock %}
-            </div>
-
-            <div class="content">
-                {% block content %}{% endblock %}
-            </div>
-
-        {% endblock %}
+    {% block content %}{% endblock %}
 
     </div>
 {% endblock %}

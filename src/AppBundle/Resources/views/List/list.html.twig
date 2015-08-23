@@ -2,11 +2,13 @@
 
 {% block content %}
 
-    <div class="hidden-xs hidden-sm">
-        {% include 'AppBundle:List:_search.html.twig' %}
-    </div>
+<div class="header">
+    {% include 'AppBundle:List:_search.html.twig' %}
+</div>
 
-    <div class="list-group">
+<div class="content">
+
+    <ul class="list">
         {% for task in tasks %}
             {% set urgency = "low" %}
             {% if task.urgency > urgency_threshold.high %}
@@ -14,48 +16,53 @@
             {% elseif task.urgency > urgency_threshold.medium %}
                 {% set urgency = "medium" %}
             {% endif %}
-            <a href="{{ path('task_info', {id: task.uuid}) }}"
-               class="list-group-item urgency-{{ urgency }} modal-ajax  {% if task.start %}list-group-item-warning{% endif %}">
-
-                <h4 class="list-group-item-heading">
-
+            <li>
+                <div class="status urgency-{{ urgency }}">
                     {% if task.pending %}
-                        <i class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="pending"></i>
+                        <i class="fa fa-eye" data-toggle="tooltip" title="pending"></i>
                     {% elseif task.completed %}
-                        <i class="glyphicon glyphicon-ok" data-toggle="tooltip" title="completed"></i>
+                        <i class="fa fa-check" data-toggle="tooltip" title="completed"></i>
                     {% elseif task.deleted %}
-                        <i class="glyphicon glyphicon-trash" data-toggle="tooltip" title="deleted"></i>
+                        <i class="fa fa-trash" data-toggle="tooltip" title="deleted"></i>
                     {% elseif task.waiting %}
-                        <i class="glyphicon glyphicon-time" data-toggle="tooltip" title="waiting"></i>
+                        <i class="fa fa-time" data-toggle="tooltip" title="waiting"></i>
                     {% elseif task.isRecurring %}
-                        <i class="glyphicon glyphicon-refresh" data-toggle="tooltip" title="recurring"></i>
+                        <i class="fa fa-refresh" data-toggle="tooltip" title="recurring"></i>
                     {% endif %}
+                </div>
 
-                    {{ task.description }}
+                <a href="{{ path('task_info', {id: task.uuid}) }}"
+                   class="item modal-ajax  {% if task.start %}list-group-item-warning{% endif %}">
 
-                </h4>
+                    <div class="heading">
+                        {{ task.description }}
+                    </div>
 
-                <p class="list-group-item-text">
-                    {% if task.project %}
-                        <span class="label label-success">Project: {{ task.project }}</span>
-                    {% endif %}
+                    <div class="info">
+                        {% if task.project %}
+                            <span class="label label-success">Project: {{ task.project }}</span>
+                        {% endif %}
 
-                    {% if task.due %}
-                        <span class="label {% if task.due > date() %}label-warning{% else %}label-danger{% endif %}">
+                        {% if task.due %}
+                            <span class="label {% if task.due > date() %}label-warning{% else %}label-danger{% endif %}">
                             Due: <date>{{ task.due }}</date></span>
-                    {% endif %}
+                        {% endif %}
 
-                    {% for tag in task.tags %}
-                        <span class="label label-default">{{ tag }}</span>
-                    {% endfor %}
-                </p>
-
+                        {% for tag in task.tags %}
+                            <span class="label label-default">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
             </a>
+            </li>
         {% else %}
+            <li>
             <a href="#" class="list-group-item disabled">
                 <h4 class="list-group-item-heading">No tasks found</h4>
             </a>
+            </li>
         {% endfor %}
-    </div>
+    </ul>
+
+</div>
 
 {% endblock %}

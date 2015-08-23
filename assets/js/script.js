@@ -36,7 +36,7 @@ var doThings = {};
             }
         });
 
-        $el.find('[data-toggle="tooltip"]').tooltip();
+        //$el.find('[data-toggle="tooltip"]').tooltip();
 
         $el.find('date').each(function() {
 
@@ -48,7 +48,7 @@ var doThings = {};
             }
 
             $(this).text(date.fromNow());
-            $(this).attr('title', dateString).tooltip();
+            //$(this).attr('title', dateString).tooltip();
         });
     };
 

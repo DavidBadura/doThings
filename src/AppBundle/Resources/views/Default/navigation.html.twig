@@ -1,6 +1,6 @@
 {% import _self as _ %}
 
-<nav>
+<nav class="main">
     <ul>
         {{ _.section('Reports', reports) }}
         {{ _.section('Projects', projects) }}
@@ -14,9 +14,9 @@
     {% for label,data in list %}
         <li>
             <a href="{{ data.url }}">
-                <span class="glyphicon glyphicon-chevron-right"></span>
+                <i class="fa fa-arrow-circle-right"></i>
                 <span class="badge">{{ data.count }}</span>
-                {{ label }}
+                <span class="label">{{ label }}</span>
             </a>
         </li>
     {% endfor %}

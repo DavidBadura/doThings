@@ -1,38 +1,5 @@
 @import "variables.css";
-
-html {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    height: 100%;
-    background: var(--white);
-    lost-utility: clearfix;
-}
-
-a {
-    color: var(--link-color);
-}
-
-.navigation-sidebar {
-    lost-column: 1/6;
-    background: var(--navbar-bg);
-    color: var(--navbar-color);
-    height:100%;
-
-    a {
-        color: var(--navbar-color);
-    }
-
-    .logo {
-        font-size: 24px;
-        color: var(--navbar-logo-color);
-    }
-}
-
-.main-container {
-    lost-column: 5/6 2;
-    height:100%
-}
-
+@import "layout.css";
+@import "navigation.css";
+@import "modal.css";
+@import "list.css";

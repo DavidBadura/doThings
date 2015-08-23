@@ -1,14 +1,15 @@
 :root {
-    --primary: #007a99;
-    --primary-lighter: color(var(--primary) l(30%));
-    --primary-darker: color(var(--primary) l(20%));
+    --background-color: #34495E;
+    --primary: #2ECC71;
+    --text-color: #ECF0F1;
+    --text-color-darker: #95A5A6;
 
-    --white: color(var(--primary) l(97%));
-    --black: color(var(--primary) l(10%));
+    --link-color: var(--primary);
 
-    --link-color: var(--black);
-
-    --navbar-bg: var(--black);
-    --navbar-color: var(--primary);
-    --navbar-logo-color: var(--white);
+    --navbar-size: 250px;
+    --navbar-bg: #2C3E50;
+    --navbar-color: var(--text-color-darker);
+    --navbar-logo-color: var(--primary);
+    --navbar-link-color: var(--text-color);
+    --navbar-link-hover: var(--primary);
 }

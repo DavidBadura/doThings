@@ -1,0 +1,36 @@
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: var(--background-color);
+    padding: 40px 20px 20px 20px;
+
+    box-sizing: border-box;
+
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+
+    a {
+        color: #fff;
+    }
+
+    .btn-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 25px;
+    }
+
+    &.open {
+         opacity: 1;
+    }
+
+    .modal-container {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+}
