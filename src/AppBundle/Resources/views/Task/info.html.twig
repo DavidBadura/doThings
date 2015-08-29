@@ -6,23 +6,23 @@
         {% if task.pending or task.waiting %}
             <a href="{{ path('task_done', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax" data-toggle="tooltip"
                data-placement="bottom" title="done">
-                <span class="glyphicon glyphicon-ok"></span>
+                <span class="fa fa-ok"></span>
             </a>
         {% endif %}
 
         {% if task.pending or task.waiting or task.isRecurring() %}
             <a href="{{ path('task_edit', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax" data-toggle="tooltip"
                data-placement="bottom" title="edit">
-                <span class="glyphicon glyphicon-pencil"></span>
+                <span class="fa fa-pencil"></span>
             </a>
             <a href="{{ path('task_delete', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax"
                data-toggle="tooltip" data-placement="bottom" title="delete">
-                <span class="glyphicon glyphicon-trash"></span>
+                <span class="fa fa-trash"></span>
             </a>
         {% else %}
             <a href="{{ path('task_reopen', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax"
                data-toggle="tooltip" data-placement="bottom" title="reopen">
-                <span class="glyphicon glyphicon-refresh"></span>
+                <span class="fa fa-refresh"></span>
             </a>
         {% endif %}
 
@@ -31,12 +31,12 @@
         {% if task.start %}
             <a href="{{ path('task_stop', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax"
                data-toggle="tooltip" data-placement="bottom" title="stop activity">
-                <span class="glyphicon glyphicon-stop"></span>
+                <span class="fa fa-stop"></span>
             </a>
         {% else %}
             <a href="{{ path('task_start', {id: task.uuid}) }}" class="btn btn-secondly modal-ajax"
                data-toggle="tooltip" data-placement="bottom" title="start working on this">
-                <span class="glyphicon glyphicon-play"></span>
+                <span class="fa fa-play"></span>
             </a>
         {% endif %}
 

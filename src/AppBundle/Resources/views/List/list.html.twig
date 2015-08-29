@@ -19,7 +19,7 @@
             <li>
                 <div class="status urgency-{{ urgency }}">
                     {% if task.pending %}
-                        <i class="fa fa-eye" data-toggle="tooltip" title="pending"></i>
+                        <i class="fa fa-rocket" data-toggle="tooltip" title="pending"></i>
                     {% elseif task.completed %}
                         <i class="fa fa-check" data-toggle="tooltip" title="completed"></i>
                     {% elseif task.deleted %}
@@ -39,18 +39,27 @@
                     </div>
 
                     <div class="info">
+                        <ul class="tags">
+
                         {% if task.project %}
-                            <span class="label label-success">Project: {{ task.project }}</span>
+                            <li>
+                                <i class="fa fa-folder-open"></i> {{ task.project }}
+                            </li>
                         {% endif %}
 
                         {% if task.due %}
-                            <span class="label {% if task.due > date() %}label-warning{% else %}label-danger{% endif %}">
-                            Due: <date>{{ task.due }}</date></span>
+                            <li class="{% if task.due < date() %}red{% endif %}">
+                                <i class="fa fa-hourglass-half"></i> <date>{{ task.due }}</date>
+                            </li>
                         {% endif %}
 
                         {% for tag in task.tags %}
-                            <span class="label label-default">{{ tag }}</span>
+                            <li>
+                                <i class="fa fa-tag"></i> {{ tag }}
+                            </li>
                         {% endfor %}
+
+                        </ul>
                     </div>
             </a>
             </li>

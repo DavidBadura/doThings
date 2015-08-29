@@ -11,7 +11,7 @@ var doThings = {};
             format: 'H:i'
         });
 
-        $el.find(".autocomplete:not(.tags)").each(function() {
+        $el.find("select.autocomplete:not(.tags)").each(function() {
             var $this = $(this);
 
             $this.select2({
@@ -21,7 +21,7 @@ var doThings = {};
             })
         });
 
-        $el.find(".tags").each(function() {
+        $el.find("select.tags").each(function() {
             var $this = $(this);
 
             $this.select2({

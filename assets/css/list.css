@@ -3,23 +3,23 @@ ul.list {
     padding: 0;
     list-style: none;
 
-    li {
+    > li {
         margin: 0 0 10px 0;
         padding: 0px;
-        height: 50px;
+        height: 40px;
         width: 100%;
     }
 
     .status {
         float: left;
 
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
 
         color: var(--text-color);
-        font-size: 30px;
+        font-size: 20px;
         text-align: center;
-        line-height: 50px;
+        line-height: 40px;
         color: var(--background-color);
 
         &.urgency-high {
@@ -43,11 +43,12 @@ ul.list {
         padding: 0 10px;
 
         .heading {
-            height: 30px;
+            font-size: 1.1em;
+            height: 22px;
         }
 
         .info {
-            height: 20px;
+            height: 18px;
             font-size: 0.8em;
             color: var(--text-color-darker);
         }
@@ -55,5 +56,17 @@ ul.list {
         &:hover {
             background: #2C3E50;
         }
+    }
+}
+
+ul.tags {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > li {
+        float:left;
+        margin: 0 15px 0 0;
+        padding: 0px;
     }
 }

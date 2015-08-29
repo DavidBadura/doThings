@@ -2,19 +2,19 @@
 
 <nav class="main">
     <ul>
-        {{ _.section('Reports', reports) }}
-        {{ _.section('Projects', projects) }}
-        {{ _.section('Tags', tags) }}
+        {{ _.section('Reports', reports, 'fa-arrow-circle-right') }}
+        {{ _.section('Projects', projects, 'fa-folder-open') }}
+        {{ _.section('Tags', tags, 'fa-tag') }}
     </ul>
 </nav>
 
-{% macro section(header, list) %}
+{% macro section(header, list, icon) %}
     {{ header }}
     <ul>
     {% for label,data in list %}
         <li>
             <a href="{{ data.url }}">
-                <i class="fa fa-arrow-circle-right"></i>
+                <i class="fa {{ icon }}"></i>
                 <span class="badge">{{ data.count }}</span>
                 <span class="label">{{ label }}</span>
             </a>

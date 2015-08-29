@@ -19,7 +19,7 @@ a {
 .logo {
     display: block;
     position: relative;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: bold;
     color: var(--primary);
 }
@@ -48,10 +48,14 @@ a {
 
 .header {
     padding: 15px;
-    height: 40px;
+    height: 20px;
     margin-bottom: 10px;
 }
 
 .content {
     padding: 15px;
+}
+
+.red {
+    color: #E74C3C;
 }

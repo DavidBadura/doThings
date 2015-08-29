@@ -1,15 +1,14 @@
 input {
-
-
     padding: 10px;
     border: 0;
     color: #ECF0F1;
-    background: #27AE60;
+    background: #2C3E50;
+}
 
 
+button {
     padding: 10px;
     background: #2ECC71;
     border: 0;
     color: #ECF0F1;
 }
-
