@@ -18,8 +18,10 @@
             {% endif %}
             <li>
                 <div class="status urgency-{{ urgency }}">
-                    {% if task.pending %}
-                        <i class="fa fa-rocket" data-toggle="tooltip" title="pending"></i>
+                    {% if task.start %}
+                        <i class="fa fa-rocket" data-toggle="tooltip" title="start"></i>
+                    {% elseif task.pending %}
+                        <i class="fa fa-ellipsis-h" data-toggle="tooltip" title="pending"></i>
                     {% elseif task.completed %}
                         <i class="fa fa-check" data-toggle="tooltip" title="completed"></i>
                     {% elseif task.deleted %}

@@ -56,6 +56,11 @@ a {
     padding: 15px;
 }
 
+.center {
+    width: 500px;
+    margin: 50px auto;
+}
+
 .red {
     color: #E74C3C;
 }
