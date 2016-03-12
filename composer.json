@@ -9,15 +9,15 @@
         }
     },
     "require": {
-        "php": ">=5.4",
-        "symfony/symfony": "^2.7",
+        "php": ">=5.5",
+        "symfony/symfony": "^2.8",
         "twig/extensions": "~1.0",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "^3.0.12",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
-        "davidbadura/taskwarrior": "^2.1"
+        "davidbadura/taskwarrior": "^3.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

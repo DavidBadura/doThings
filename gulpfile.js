@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     concat = require('gulp-concat'),
-    minifyCSS = require('gulp-minify-css');
+    minifyCSS = require('gulp-clean-css');
 
 gulp.task('default', ['css', 'js', 'fonts']);
 
@@ -65,7 +65,7 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest('web/fonts/'));
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['default'], function () {
     gulp.watch('assets/scss/*.scss', ['css']);
     gulp.watch('assets/js/*.js', ['js']);
 });
