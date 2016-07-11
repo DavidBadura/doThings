@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+    php:
+        build:
+            context: .
+            args:
+                TASKWARRIOR_VER: 2.5.1
+        volumes:
+            - ./:/var/www/html
+        working_dir: /var/www/html
+        entrypoint: /entrypoint.php.sh
+        restart: always
+        environment:
+            - SYMFONY_ENV=dev
+
+    gulp:
+        image: node
+        volumes_from:
+            - php:rw
+        working_dir: /var/www/html
+        entrypoint: /var/www/html/bin/entrypoint.gulp.sh
+        restart: never
+
+    nginx:
+        image: nginx:alpine
+        links:
+            - php
+        volumes:
+            - ./app/config/nginx.conf:/etc/nginx/nginx.conf:ro
+        volumes_from:
+            - php:ro
+        working_dir: /var/www/html
+        ports:
+            - "8000:8000"
+        restart: always
