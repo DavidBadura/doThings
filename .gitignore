@@ -5,7 +5,9 @@
 /app/logs/*
 !app/logs/.gitkeep
 /app/phpunit.xml
-/bin/
+/bin/*
+!/bin/entrypoint.gulp.sh
+!/bin/entrypoint.php.sh
 /composer.phar
 /vendor/
 /web/bundles/
