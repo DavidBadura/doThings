@@ -44,3 +44,16 @@ docker-compose down
 Docker-compose 1.7+ is required (and docker-engine 1.11+) because of v2 configuration file.
 
 **NOTE:** Entire environment is wired for development (app_dev.php Symfony front controller), host mounted volumes with sources, gulp builder watching.
+
+### Running tests
+
+```
+$ docker-compose exec php php bin/phpunit -c app/
+PHPUnit 4.8.26 by Sebastian Bergmann and contributors.
+
+...
+
+Time: 48 ms, Memory: 6.00MB
+
+OK (3 tests, 6 assertions)
+```

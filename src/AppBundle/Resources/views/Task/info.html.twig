@@ -73,6 +73,14 @@
             </td>
         </tr>
         <tr>
+            <td>Dependencies</td>
+            <td>
+                {% for dep in task.dependencies %}
+                    <a href="{{ path('task_info', {id: dep.uuid}) }}"class="label label-default modal-ajax">{{ dep.description }}</a>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
             <td>Project</td>
             <td>{{ task.project|default('-') }}</td>
         </tr>

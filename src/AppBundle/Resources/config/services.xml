@@ -28,7 +28,7 @@
 
         <!-- Form -->
         <service id="form.type.task" class="AppBundle\Form\Type\TaskType">
-            <argument type="service" id="taskwarrior"/>
+            <argument type="service" id="task_manager"/>
             <tag name="form.type" alias="task"/>
         </service>
 
@@ -39,6 +39,10 @@
 
         <service id="form.type.tag" class="AppBundle\Form\Type\TagType">
             <tag name="form.type" alias="tag"/>
+        </service>
+
+        <service id="form.type.dependency" class="AppBundle\Form\Type\DependencyType">
+            <tag name="form.type" alias="dependency"/>
         </service>
 
         <service id="form.type.recurring" class="AppBundle\Form\Type\RecurringType">
