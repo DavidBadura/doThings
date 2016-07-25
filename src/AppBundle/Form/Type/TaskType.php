@@ -3,7 +3,7 @@
 namespace AppBundle\Form\Type;
 
 use DavidBadura\Taskwarrior\Task;
-use DavidBadura\Taskwarrior\Taskwarrior;
+use DavidBadura\Taskwarrior\TaskManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -16,16 +16,16 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class TaskType extends AbstractType
 {
     /**
-     * @var Taskwarrior
+     * @var taskmanager
      */
-    private $taskwarrior;
+    private $taskmanager;
 
     /**
-     * @param Taskwarrior $taskwarrior
+     * @param TaskManager $taskmanager
      */
-    public function __construct(Taskwarrior $taskwarrior)
+    public function __construct(TaskManager $taskmanager)
     {
-        $this->taskwarrior = $taskwarrior;
+        $this->taskmanager = $taskmanager;
     }
 
     /**
@@ -40,7 +40,7 @@ class TaskType extends AbstractType
             ])
             ->add('project', 'text', [
                 'required' => false,
-                'datalist' => $this->taskwarrior->projects()
+                'datalist' => $this->taskmanager->getTaskwarrior()->projects()
             ])
             ->add('priority', 'choice', [
                 'required' => false,
@@ -52,7 +52,14 @@ class TaskType extends AbstractType
             ])
             ->add('tags', 'tag', [
                 'required' => false,
-                'choices'  => $this->taskwarrior->tags()
+                'choices'  => $this->taskmanager->getTaskwarrior()->tags()
+            ])
+            ->add('dependencies', DependencyType::class, [
+                'required' => false,
+                'choices' => $this->taskmanager->createQueryBuilder()
+                    ->orderBy(['entry' => 'DESC'])
+                    ->getResult()
+                    ->toArray()
             ])
             ->add('due', 'datetime', [
                 'required'    => false,
